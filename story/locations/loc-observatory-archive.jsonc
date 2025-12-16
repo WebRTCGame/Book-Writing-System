@@ -1,0 +1,44 @@
+{
+  "id": "loc-observatory-archive",
+  "name": "Observatory — Archive Vault",
+  "type": "archive/secure",
+  "coordinates": { "deck": "Observatory Deck", "node": "Archive Vault B" },
+  "description": "A climate-controlled vault adjoining the observatory with racks of cached telemetry and a command root-console.",
+  "sensory_notes": {
+    "sight": "rows of laminar storage racks; a single root console with a polite blinking cursor",
+    "sound": "soft cooling fans, distant observatory dome motors",
+    "smell": "ozone and ionized metal",
+    "touch": "cool metal racks, tactile keypads"
+  },
+  "security_level": "high (command-restricted)",
+  "accessibility": { "public": false, "access_notes": "Requires archival token or physical override" },
+  "maintenance": { "status": "monitored", "last_inspection": "2025-12-10T10:00:00Z" },
+  "hazards": ["EM shielding interferes with some implants", "automated lock cycles"],
+  "inhabitants": ["char-aya-kane", "char-samir-iro", "char-dr-elya-chen"],
+  "notable_objects": [
+    { "id": "archival-core-B", "description": "Primary cached telemetry store with partitioned access states" },
+    { "id": "root-console", "description": "Command-level terminal that initiates watch processes" }
+  ],
+  "first_appearance_chapter": "chap-01",
+  "tags": ["archive", "secure", "observatory"],
+  "default_scene_hooks": ["tampered frames recovered", "watch process triggers", "covert copying of frames"],
+  "mood_descriptors": ["sterile", "tense", "technical"],
+  "map_reference": "map-obs-archive",
+  "notes": "",
+  "owner": "Orion Ark Consortium",
+  "connected_locations": ["loc-orion-ark", "loc-engineering-bay"],
+  "resources_available": ["archival cores", "root console for diagnostics", "portable spectral lab access (by token)"],
+  "permissions_required": ["archival token", "command override for root console"],
+  "relevant_events": [
+    { "date": "2025-12-16T15:25:00Z", "event": "Cached frames retrieved; watch process engaged" }
+  ],
+  "history": [
+    { "date": "2041-04-10", "note": "Archive partitioned for access-level control" }
+  ],
+  "last_updated": "2025-12-16T20:10:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T18:10:00Z", "author": "author", "note": "Created observatory archive for evidence-retrieval scenes" },
+    { "date": "2025-12-16T19:50:00Z", "author": "author", "note": "Corrected first_appearance_chapter to chap-01 to match chapter prose" },
+    { "date": "2025-12-16T20:10:00Z", "author": "author", "note": "Continuity fix: added current users (Aya, Samir) to inhabitants to reflect chap-01 usage" }
+  ]
+}

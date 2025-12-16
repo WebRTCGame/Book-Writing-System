@@ -1,0 +1,111 @@
+{
+  "id": "char-aya-kane",
+  "name": "Aya Kane",
+  "aliases": ["A. Kane"],
+  "role": "protagonist",
+  "age": 29,
+  "gender": "female",
+  "pronouns": "she/her",
+  "physical_description": "short cropped dark hair, metallic left eye implant with faint teal glow",
+  "ethnicity": "mixed East Asian",
+  "appearance": {
+    "height_cm": 168,
+    "build": "slim-athletic",
+    "distinguishing_features": ["metallic left eye implant (teal glow)", "small burn mark on left wrist"],
+    "typical_clothing": "patched jacket, compact utility belt"
+  },
+  "motivations": [
+    "Uncover what silenced a mapped sector",
+    "Protect the crew from hidden decisions",
+    "Preserve and publish accurate records"
+  ],
+  "fears": [
+    "Ship systems being taught to forget",
+    "Anyone close to her being harmed because of her investigations",
+    "Being framed as a saboteur"
+  ],
+  "past_trauma": [
+    {
+      "summary": "Exposed a small-scale data suppression while on a freighter",
+      "impact": "Deep mistrust of centralized logs; tense around official audits",
+      "redacted": false
+    }
+  ],
+  "goals": {
+    "short_term": "Secure observatory frames and copy logs offline",
+    "long_term": "Expose systemic erasure and protect community records"
+  },
+  "education": [
+    { "institution": "Navigation & Systems Academy", "field": "Stellar Navigation", "year_completed": 2017 }
+  ],
+  "occupation_history": [
+    { "role": "navigation officer", "employer": "Freighter Line X", "years": "2017-2023" }
+  ],
+  "languages": ["english"],
+  "cultural_background": "Grew up in an orbital community that valued independent archives",
+  "place_of_birth": "Orbital Colony Orion",
+  "date_of_birth": "1996-08-04",
+  "legal_status": "citizen",
+  "personality_traits": ["curious", "stubborn", "methodical"],
+  "flaws": ["mistrustful of institutions", "keeps secrets too long"],
+  "strengths": ["analytical", "calm under pressure"],
+  "emotional_state": "guarded",
+  "beliefs": ["Records should remain accessible to the public"],
+  "secrets": [
+    { "text": "Holds an encrypted offline copy of sensitive observatory frames", "redacted": true }
+  ],
+  "relatives": [],
+  "motivational_notes": "Acts immediately when patterns suggest deliberate concealment.",
+  "profile_summary": "Former navigation officer. Skilled at low-level telemetry analysis and covert data retrieval; emotionally guarded after exposing suppression.",
+  "archetype": "reluctant-investigator",
+  "character_arc": {
+    "start_state": "skeptical and controlled",
+    "end_state": "willing to risk exposure to reveal truth",
+    "key_beats": [
+      "detects blank sector",
+      "bypasses observatory to retrieve logs",
+      "duplicates evidence and triggers beacon handshake"
+    ]
+  },
+  "voice": {
+    "register": "concise",
+    "speech_patterns": ["short declarative sentences", "technical metaphors"],
+    "sample_lines": ["I saw a pulse here — like a beacon — but there's no log."]
+  },
+  "speech_idiosyncrasies": ["drops small talk when focused", "uses navigation analogies"],
+  "first_appearance_quote": "I saw a pulse here — like a beacon — but there's no log.",
+  "moral_alignment": "neutral-good",
+  "resources": {
+    "wealth_level": "modest",
+    "access_levels": ["navigation-console", "archives-limited"],
+    "notable_assets": ["left-eye implant", "ceramic compass", "encrypted microdrive (secret)"]
+  },
+  "health": {
+    "physical": "good",
+    "mental": "vigilant",
+    "notes": "short bouts of insomnia during investigations"
+  },
+  "reliability": { "narrator": "reliable", "notes": "may omit traumatic context" },
+  "narrative_role": { "is_pov_candidate": true, "recommended_pov": "third-limited" },
+  "arc_priority": 1,
+  "preferred_scenes": ["investigation", "quiet reflection", "confrontation"],
+  "recommended_conflicts": ["Expose truth vs protect allies", "Decide whether to involve command"],
+  "timeline": [
+    { "date": "2017-06-01", "event": "Completed Navigation Academy" },
+    { "date": "2023-04-12", "event": "Reported small-scale data suppression" }
+  ],
+  "relationship_dynamics": [
+    { "id": "char-samir-iro", "type": "ally", "strength": "strong", "notes": "Practical partner; pragmatic trust" }
+  ],
+  "editor_notes": "",
+  "current_state": "reviewing anomalous signal",
+  "first_appearance_chapter": "chap-01",
+  "tags": ["main", "navigator", "sci-fi"],
+  "sensitive": false,
+  "last_updated": "2025-12-16T17:30:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T15:00:00Z", "author": "author", "note": "Created for test story" },
+    { "date": "2025-12-16T17:30:00Z", "author": "author", "note": "Expanded to match new character schema: demographics, motivations, fears, goals, education, resources, and writing metadata" }
+  ],
+  "notes": "Preferred pronouns: she/her."
+}

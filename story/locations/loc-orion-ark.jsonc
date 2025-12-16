@@ -1,0 +1,48 @@
+{
+  "id": "loc-orion-ark",
+  "name": "Orion Ark — Hab & Observatory Decks",
+  "type": "starship/colony",
+  "description": "A mid-sized exploration ark with clustered habitation rings and a small observatory dome.",
+  "sensory_notes": {
+    "sight": "faint teal instrument lights, starfield beyond the dome",
+    "sound": "vent pumps, distant hull creaks",
+    "smell": "metal polish and hydroponic soil",
+    "touch": "recycled-air coolness on skin"
+  },
+  "inhabitants": ["char-aya-kane", "char-samir-iro"],
+  "notable_objects": ["observatory-array-3", "hydroponic-wall-7", "archival-core-B"],
+  "first_appearance_chapter": "chap-01",
+  "tags": ["ship", "observatory"],
+  "coordinates": { "node": "Orion Ark", "deck": "Hab & Obs", "sector": "A-3" },
+  "ambient_sound_profile": "vent pumps and distant hull creaks; occasional announcement pings",
+  "lighting_conditions": "soft deck strips in habs; focused instrument lights in observatory",
+  "ambient_temperature_C": 21,
+  "seasonal_variation": "none (controlled environment)",
+  "capacity": { "max_occupancy": 240, "typical_occupancy": "moderate" },
+  "accessibility": { "public": false, "access_notes": "Most decks require clearance; observatory and archives are restricted" },
+  "security_level": "controlled/command-restricted",
+  "owner": "Orion Ark Consortium",
+  "maintenance": {
+    "status": "operational-with-wear",
+    "last_inspection": "2025-12-01T09:00:00Z",
+    "notes": "Archival partitions under scheduled review; occasional read-errors"
+  },
+  "hazards": ["pressurization traps in maintenance shafts", "sensitive equipment vulnerable to EMP bursts"],
+  "connected_locations": ["loc-orion-market", "loc-observatory-archive", "loc-engineering-bay"],
+  "default_scene_hooks": ["quiet decoding in the archive", "command meeting on contamination", "covert duplication to offline drive"],
+  "resources_available": ["archival cores (restricted)", "observatory array", "limited emergency power"],
+  "mood_descriptors": ["tense", "contained", "watched"],
+  "relevant_events": [
+    { "date": "2025-12-16T15:40:00Z", "event": "Archive watch process detected; traces removed" }
+  ],
+  "history": [
+    { "date": "2039-01-01", "note": "Ship commissioned for long-range surveys" }
+  ],
+  "last_updated": "2025-12-16T18:40:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T15:10:00Z", "author": "author", "note": "Created for test story" },
+    { "date": "2025-12-16T18:10:00Z", "author": "author", "note": "Expanded location metadata: security, maintenance, hooks, resources, and incidents" },
+    { "date": "2025-12-16T18:40:00Z", "author": "author", "note": "Validated and expanded to match location schema (security, maintenance, hooks, resources, events)" }
+  ],
+  "notes": "Ship's archival core is partitioned by access level."
+}

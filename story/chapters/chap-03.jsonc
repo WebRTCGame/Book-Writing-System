@@ -1,0 +1,52 @@
+{
+  "id": "chap-03",
+  "title": "Probe & Promise",
+  "status": "draft",
+  "pov_character_id": "char-aya-kane",
+  "setting_location_id": "loc-observatory-archive",
+  "prose_file": "story/chapters/chap-03.md",
+  "estimated_word_count": 1800,
+  "actual_word_count": 2000,
+  "parts": [
+    {
+      "id": "chap-03-part-01",
+      "sequence": 1,
+      "file": "story/chapters/chap-03_part-01-approach.md",
+      "title": "Approach",
+      "plot_lines": ["pl-investigation"],
+      "summary": "They find a probe fragment answering discrete pings; its signature is engineered and directional, pointing toward the lattice.",
+      "beats": ["approach","discover-frag"],
+      "estimated_word_count": 1000,
+      "actual_word_count": 1000,
+      "status": "draft",
+      "last_updated": "2025-12-17T03:00:00Z"
+    },
+    {
+      "id": "chap-03-part-02",
+      "sequence": 2,
+      "file": "story/chapters/chap-03_part-02-confrontation.md",
+      "title": "Confrontation",
+      "plot_lines": ["pl-investigation","pl-concealment"],
+      "summary": "The probe replies with a structured echo; command notices activity and the team must decide whether to escalate or observe quietly.",
+      "beats": ["decode","command-notice","decision-cliffhanger"],
+      "estimated_word_count": 1000,
+      "actual_word_count": 1000,
+      "status": "draft",
+      "last_updated": "2025-12-17T03:00:00Z"
+    }
+  ],
+  "outline": ["Approach probe fragment", "Coax response", "Decide whether to involve command"],
+  "beats": [
+    { "id": "beat-1", "summary": "Detect and isolate probe-frag" },
+    { "id": "beat-2", "summary": "Coax structured reply; find direction" },
+    { "id": "beat-3", "summary": "Command notices; decision to keep discovery quiet" }
+  ],
+  "tags": ["probe", "investigation", "escalation"],
+  "first_written": "2025-12-17T02:45:00Z",
+  "last_updated": "2025-12-17T03:00:00Z",
+  "revision_history": [
+    { "date": "2025-12-17T02:45:00Z", "author": "copilot", "note": "Created chapter 3 parts and prose; initial draft" },
+    { "date": "2025-12-17T03:00:00Z", "author": "copilot", "note": "Expanded parts to meet story_config chapter target (2000 words total); re-ran checks and assessments" }
+  ],
+  "notes": ""
+}

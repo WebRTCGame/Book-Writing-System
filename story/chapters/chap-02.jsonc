@@ -1,0 +1,116 @@
+{
+  "id": "chap-02",
+  "title": "Signals and Silence",
+  "story_id": "test-story",
+  "previous_chapter_id": "chap-01",
+  "next_chapter_id": "chap-03",
+  "estimated_word_count": 2000,
+  "actual_word_count": 1720,
+  "last_updated": "2025-12-17T02:00:00Z",
+  "checks": {
+    "last_run": "2025-12-16T23:30:00Z",
+    "report": "story/continuity/checks-report-2025-12-16T23:30:00Z.jsonc",
+    "continuity_report": "story/continuity/continuity-chap-02-2025-12-16T22:45:00Z.jsonc",
+    "status": "ok",
+    "assessments": [
+      "story/continuity/assessment-chap-02-2025-12-16T23:30:00Z.jsonc"
+    ]
+  },
+  "revision_history": [
+    { "date": "2025-12-16T15:00:00Z", "author": "author", "note": "Initial creation" },
+    { "date": "2025-12-16T17:30:00Z", "author": "author", "note": "Expanded content and added character interactions" },
+    { "date": "2025-12-16T19:50:00Z", "author": "author", "note": "Bumped estimated_word_count to meet story_config min/target" },
+    { "date": "2025-12-16T21:00:00Z", "author": "author", "note": "Added chapter parts and full prose for chap-02; introduced Dr. Elya Chen as analyst; set actual_word_count" },
+    { "date": "2025-12-16T21:05:00Z", "author": "author", "note": "Automated checks run on chap-02 (context: chap-01); one warning about character mention before first appearance; linked continuity report" },
+    { "date": "2025-12-16T21:40:00Z", "author": "author", "note": "Automated checks re-run after continuity fix; no issues found" },
+    { "date": "2025-12-16T22:00:00Z", "author": "author", "note": "Cross-reference pass completed; no outstanding issues (linked aggregated checks report)" },
+    { "date": "2025-12-16T22:45:00Z", "author": "author", "note": "Full-check run (local); no issues found; linked checks-report-2025-12-16T22:45:00Z.jsonc" },
+    { "date": "2025-12-16T23:30:00Z", "author": "copilot", "note": "Assessment run completed for chap-02; assessment artifact added" },
+    { "date": "2025-12-17T02:00:00Z", "author": "copilot-rewrite", "note": "Applied conservative rewrite iteration 1 to part-01; backup stored; re-run checks/assessment" }
+  ],
+  "content": [
+    {
+      "type": "narration",
+      "text": "The chapter opens with Aya Kane analyzing the anomalous signal detected in the previous chapter. The signal, a series of repeating pulses, seems to be a form of communication, but from whom or what remains unclear."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "char-aya-kane",
+      "text": "It's almost like it's trying to mimic a distress beacon... but the pattern is all wrong."
+    },
+    {
+      "type": "narration",
+      "text": "As Aya delves deeper, she recalls her training at the Navigation & Systems Academy, where they were taught to recognize and interpret various stellar phenomena."
+    },
+    {
+      "type": "flashback",
+      "character_id": "char-aya-kane",
+      "text": "During her training, Aya had been fascinated by a module on ancient communication methods, including the use of pulsar signals as cosmic lighthouses."
+    },
+    {
+      "type": "narration",
+      "text": "Returning to the present, Aya's mind races as she considers the implications of her discovery. If this signal is indeed a form of communication, it could mean that someone, or something, is out there, deliberately masking their presence."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "char-aya-kane",
+      "text": "Could it be a warning? Or a lure? Either way, I need to find out more."
+    },
+    {
+      "type": "narration",
+      "text": "The chapter would then explore Aya's investigation into the signal, her interactions with the ship's systems, and any relevant data logs she can access. Her relationship with the ship's AI, SAM, would also be further developed, showcasing her reliance on and occasional frustration with the ship's automated systems."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "ai-sam",
+      "text": "Analyzing signal pattern... 70% similarity to known pulsar emissions. 30% deviation detected."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "char-aya-kane",
+      "text": "30% deviation? So it's either a very sophisticated mimicry or..."
+    },
+    {
+      "type": "narration",
+      "text": "Aya's thoughts are interrupted by an alert from the ship's external sensors."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "ai-sam",
+      "text": "Alert: Unknown object detected at sector 7-G. Initiating scan."
+    },
+    {
+      "type": "narration",
+      "text": "The chapter would end on a cliffhanger, with Aya preparing to confront whatever mystery lies ahead in sector 7-G."
+    }
+  ],
+  "prose_file": "story/chapters/chap-02.md",
+  "parts": [
+    {
+      "id": "chap-02-part-01",
+      "sequence": 1,
+      "file": "story/chapters/chap-02_part-01-frames.md",
+      "title": "Frames & Beacon",
+      "plot_lines": ["pl-investigation"],
+      "summary": "They analyze cached observatory frames and confirm a deliberate prime-interval beacon with a directional bias, hinting at a probe near the uncharted lattice.",
+      "beats": ["beat-1", "beat-2"],
+      "estimated_word_count": 920,
+      "actual_word_count": 840,
+      "status": "draft",
+      "last_updated": "2025-12-17T02:00:00Z"
+    },
+    {
+      "id": "chap-02-part-02",
+      "sequence": 2,
+      "file": "story/chapters/chap-02_part-02-decode.md",
+      "title": "Decode & Direction",
+      "plot_lines": ["pl-investigation","pl-concealment"],
+      "summary": "Dr. Elya Chen decodes handshake residues to produce a coarse bearing and coax a faint probe reply; the lab decides to keep findings discrete until corroborated, raising strategic stakes.",
+      "beats": ["beat-2"],
+      "estimated_word_count": 880,
+      "actual_word_count": 880,
+      "status": "draft",
+      "last_updated": "2025-12-16T21:00:00Z"
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "id": "char-lyra-moss",
+  "name": "Lyra Moss",
+  "aliases": ["Lyra"],
+  "role": "informant/technician",
+  "age": 31,
+  "gender": "female",
+  "pronouns": "she/her",
+  "physical_description": "short, sharp-eyed, carries a worn datapad",
+  "personality_traits": ["pragmatic","shrewd","guarded"],
+  "motivations": ["Keep information flowing", "Protect contacts"],
+  "goals": { "short_term": "Provide contextual leads for probe signatures", "long_term": "Maintain network autonomy" },
+  "backstory": "Former comms analyst who traded institutional access for independent info work.",
+  "skills": ["signal triage","contact networks"],
+  "first_appearance_chapter": "chap-03",
+  "tags": ["informant","comms"],
+  "sensitive": false,
+  "last_updated": "2025-12-17T02:45:00Z",
+  "revision_history": [{ "date": "2025-12-17T02:45:00Z", "author": "copilot", "note": "Added Lyra Moss as supporting contact for chap-03" }]
+}

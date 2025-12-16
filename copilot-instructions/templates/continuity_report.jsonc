@@ -1,0 +1,16 @@
+{
+  "id": "continuity-chap-03-2025-12-16T22:00:00Z",
+  "chapter_id": "chap-03",
+  "generated_at": "2025-12-16T22:00:00Z",
+  "issues": [
+    {
+      "type": "contradiction",
+      "severity": "high",
+      "detail": "Character 'char-lena-sato' described as 'left eyebrow scar' in log but chapter says 'clean face'.",
+      "referenced_objects": ["char-lena-sato", "chap-03"],
+      "recommendation": "Decide whether Lena has a scar; update either character log or chapter text."
+    }
+  ],
+  "summary": "1 high-severity contradiction found.",
+  "last_updated": "2025-12-16T22:00:00Z"
+}

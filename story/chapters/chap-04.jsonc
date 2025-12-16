@@ -1,0 +1,78 @@
+{
+  "id": "chap-04",
+  "title": "Signals and Silence",
+  "story_id": "story-01",
+  "sequence": 4,
+  "estimated_word_count": 2000,
+  "actual_word_count": 0,
+  "draft_status": "in-progress",
+  "last_updated": "2025-12-16T19:50:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T15:00:00Z", "author": "author", "note": "Initial creation of chapter." },
+    { "date": "2025-12-16T17:30:00Z", "author": "author", "note": "Expanded content and refined structure." },
+    { "date": "2025-12-16T19:50:00Z", "author": "author", "note": "Bumped estimated_word_count to meet story_config min/target" }
+  ],
+  "content": [
+    {
+      "type": "narration",
+      "text": "The silence of the ship was palpable, broken only by the soft hum of the engines and the occasional beep of the control panel. Aya sat in the navigation chair, her eyes fixed on the stars streaking by on the viewscreen."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "char-aya-kane",
+      "text": "There should be more ships in this sector. Where is everyone?"
+    },
+    {
+      "type": "narration",
+      "text": "Her mind raced with possibilities, each more concerning than the last. She tapped a few commands into the console, bringing up the local star charts and ship registries."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "char-aya-kane",
+      "text": "Come on, show me something..."
+    },
+    {
+      "type": "narration",
+      "text": "As the data loaded, Aya's expression darkened. Several ships had gone dark, their last known coordinates suspiciously close to a recently mapped but unexplored sector of space."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "char-aya-kane",
+      "text": "This isn't right. I need to inform the captain."
+    },
+    {
+      "type": "narration",
+      "text": "She stood up, her chair sliding back slightly in the zero gravity. Just as she was about to leave the bridge, an alert flashed on the console."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "char-aya-kane",
+      "text": "What now?"
+    },
+    {
+      "type": "narration",
+      "text": "It was a distress signal, weak but unmistakable. Aya's heart raced as she recognized the frequency."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "char-aya-kane",
+      "text": "It's coming from the old mining outpost... but that place was abandoned years ago."
+    },
+    {
+      "type": "narration",
+      "text": "Against her better judgment, Aya felt a pull towards the outpost. It could be a trap, but it was also a lead. A chance to uncover the truth."
+    },
+    {
+      "type": "dialogue",
+      "character_id": "char-aya-kane",
+      "text": "I have to check it out. For the sake of the crew... and the truth."
+    },
+    {
+      "type": "narration",
+      "text": "With determination, Aya plotted a course for the mining outpost, her mind already racing ahead to the possibilities that awaited her there."
+    }
+  ],
+  "editor_notes": "Increase tension and develop Aya's character as she investigates the silent sector.",
+  "tags": ["investigation", "space", "sci-fi"],
+  "sensitive": false
+}

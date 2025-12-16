@@ -1,0 +1,115 @@
+{
+  // minimal character schema for logging
+  "id": "char-lena-sato",                    // unique short id
+  "name": "Lena Sato",
+  "aliases": ["Len", "L. Sato"],
+  "role": "protagonist",                     // role in the story
+  "age": 28,
+  "gender": "female",
+  "pronouns": "she/her",
+  "physical_description": "short black hair, scar on left eyebrow",
+  // new demographic & appearance fields
+  "ethnicity": "East Asian (Japanese descent)",
+  "appearance": {
+    "height_cm": 165,
+    "build": "slim-athletic",
+    "distinguishing_features": ["scar on left eyebrow", "faint teal tattoo behind right ear"],
+    "typical_clothing": "worn jacket, patched utility trousers"
+  },
+  // expanded attributes
+  "motivations": [
+    "Find truth about her brother's disappearance",
+    "Expose local corruption",
+    "Protect people she trusts"
+  ],
+  "fears": [
+    "Losing another close person",
+    "Being silenced by the authorities",
+    "Her own past reputation being used against her"
+  ],
+  "past_trauma": [
+    {
+      "summary": "Witnessed official cover-up after her brother disappeared",
+      "impact": "Heightened distrust of institutions; occasional flashbacks when handling official logs",
+      "redacted": false
+    }
+  ],
+  "goals": {
+    "short_term": "Secure the missing log fragments from the observatory",
+    "long_term": "Clear her brother's name and reform flawed records"
+  },
+  "education": [
+    { "institution": "Coastal Technical Institute", "field": "Applied Engineering", "year_completed": 2016 }
+  ],
+  "occupation_history": [
+    { "role": "navigation technician", "employer": "Freighter Line X", "years": "2017-2022" }
+  ],
+  "languages": ["english", "japanese"],
+  "cultural_background": "Raised in a coastal town with strong community archives traditions",
+  "place_of_birth": "Coastal Town, Planet Aster",
+  "date_of_birth": "1997-03-21",
+  "legal_status": "citizen",
+  "personality_traits": ["witty", "curious", "guarded"],
+  "flaws": ["stubborn", "mistrustful of institutions"],
+  "strengths": ["analytical", "steadfast under pressure"],
+  "emotional_state": "guarded",
+  "beliefs": ["Records should be public", "Systems can be gamed by people with access"],
+  "secrets": [
+    { "text": "Holds an unregistered archive copy", "redacted": true }
+  ],
+  "relatives": [
+    { "id": "char-brother-???", "name": "Yuto Sato", "relation": "brother", "status": "missing", "notes": "Subject of Lena's investigation" }
+  ],
+  "motivational_notes": "Responds strongly to perceived injustice.",
+  "profile_summary": "Former navigation tech who mistrusts institutional records after a personal loss; skilled in low-level forensics and data retrieval.",
+  // new writing- and planning-focused fields
+  "archetype": "reluctant-investigator",
+  "character_arc": {
+    "start_state": "skeptical and isolated",
+    "end_state": "willing to risk exposure to reveal truth",
+    "key_beats": [
+      "notices missing sector",
+      "bypasses observatory to retrieve logs",
+      "duplicates evidence and triggers beacon handshake"
+    ]
+  },
+  "voice": {
+    "register": "concise",
+    "speech_patterns": ["short declarative sentences", "dry humor", "uses technical metaphors"],
+    "sample_lines": ["We go get the logs ourselves."]
+  },
+  "speech_idiosyncrasies": ["drops articles when focused", "uses maritime metaphors"],
+  "first_appearance_quote": "I saw a pulse here — like a beacon — but there's no log.",
+  "moral_alignment": "neutral-good",
+  "resources": {
+    "wealth_level": "modest",
+    "access_levels": ["engineering-bay", "archives-limited"],
+    "notable_assets": ["ceramic compass", "unregistered archive copy (secret)"]
+  },
+  "health": {
+    "physical": "good",
+    "mental": "vigilant",
+    "notes": "occasional insomnia during investigations"
+  },
+  "reliability": { "narrator": "reliable", "notes": "may omit emotionally painful context" },
+  "narrative_role": { "is_pov_candidate": true, "recommended_pov": "third-limited" },
+  "arc_priority": 1,
+  "preferred_scenes": ["investigation", "quiet reflection", "confrontation"],
+  "recommended_conflicts": ["Expose truth vs protect allies", "Trust an unreliable authority to verify evidence"],
+  "timeline": [
+    { "date": "2016-06-01", "event": "Graduated Applied Engineering" },
+    { "date": "2022-08-12", "event": "Brother went missing (investigation begins)" }
+  ],
+  "relationship_dynamics": [
+    { "id": "char-samir-iro", "type": "ally", "strength": "strong", "notes": "practical engineer; they trust each other pragmatically" }
+  ],
+  "editor_notes": "",
+  "last_updated": "2025-12-16T17:05:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T14:30:00Z", "author": "author-name", "note": "Initial entry" },
+    { "date": "2025-12-16T16:30:00Z", "author": "author-name", "note": "Expanded schema: motivations (array), fears, goals, strengths, flaws, emotional_state, secrets, beliefs, and motivational_notes" },
+    { "date": "2025-12-16T16:45:00Z", "author": "author-name", "note": "Added demographic, detailed appearance, past_trauma, relatives, education, occupation_history, languages, cultural_background, place_of_birth, date_of_birth, legal_status, and profile_summary" },
+    { "date": "2025-12-16T17:05:00Z", "author": "author-name", "note": "Added archetype, character_arc, voice, speech_idiosyncrasies, narrative_role, reliability, resources, health, timeline, relationship_dynamics, and writing/editor fields" }
+  ],
+  "notes": "Preferred pronouns: she/her."
+}

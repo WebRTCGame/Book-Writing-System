@@ -1,0 +1,34 @@
+{
+  "id": "assessment-story-2025-12-17T00:00:00Z",
+  "scope": "story|chapter|part",                // scope of this assessment
+  "target_id": "story-main|chap-01|chap-01-part-01",
+  "generated_at": "2025-12-17T00:00:00Z",
+  "assessor": "copilot",
+  "confidence": 85,
+  "scores": {
+    "story_quality": 0,
+    "continuity": 0,
+    "interest": 0,
+    "tension": 0,
+    "loose_ends": 0,
+    "sentence_quality": 0,
+    "rhythm": 0,
+    "speed": 0,
+    "transparency": 0,
+    "meets_requirements": 0,
+    "readability": 0
+  },
+  "summary": "One-line summary and primary recommendation",
+  "recommended_actions": [
+    { "action": "Increase tension in early beats", "priority": "medium" }
+  ],
+  "details": {                                    // optional per-category notes
+    "continuity": "No contradictions found",
+    "reading_level": "grade_10",
+    "notes": ""
+  },
+  "last_updated": "2025-12-17T00:00:00Z",
+  "revision_history": [
+    { "date": "2025-12-17T00:00:00Z", "author": "copilot", "note": "Initial assessment generated" }
+  ]
+}

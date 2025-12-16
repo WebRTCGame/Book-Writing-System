@@ -1,0 +1,109 @@
+{
+  "id": "char-samir-iro",
+  "name": "Samir Iro",
+  "aliases": ["Sam"],
+  "role": "secondary",
+  "age": 34,
+  "gender": "male",
+  "pronouns": "he/him",
+  "physical_description": "tall, grease-smudged gloves, thin scar along right eyebrow",
+  "ethnicity": "North African descent",
+  "appearance": {
+    "height_cm": 185,
+    "build": "lean-muscular",
+    "distinguishing_features": ["grease-smudged gloves", "thin eyebrow scar"],
+    "typical_clothing": "oil-stained coveralls, toolbelt"
+  },
+  "motivations": [
+    "Keep the ship functioning",
+    "Protect the crew from systemic harm",
+    "Preserve independent access to ship archives"
+  ],
+  "fears": [
+    "Being forced to betray his crew",
+    "Losing teammates due to hidden decisions"
+  ],
+  "past_trauma": [
+    {
+      "summary": "Lost a colleague in a maintenance failure blamed on the crew",
+      "impact": "Deep distrust of centralized authority and automated diagnostics",
+      "redacted": false
+    }
+  ],
+  "goals": {
+    "short_term": "Open observatory frames and copy what he can",
+    "long_term": "Keep essential systems and records available to crew"
+  },
+  "education": [
+    { "institution": "Juno Trade School", "field": "Mechanical Systems", "year_completed": 2010 }
+  ],
+  "occupation_history": [
+    { "role": "ship mechanic", "employer": "Independent repair rings", "years": "2011-2025" }
+  ],
+  "languages": ["english", "arabic"],
+  "cultural_background": "Grew up in repair-ring communities where improvisation is prized",
+  "place_of_birth": "Repair Ring Theta",
+  "date_of_birth": "1991-11-02",
+  "legal_status": "citizen",
+  "personality_traits": ["practical", "dry-witted", "loyal"],
+  "flaws": ["cautiously cynical", "slow to trust outsiders"],
+  "strengths": ["mechanical intuition", "systems hacking"],
+  "emotional_state": "practical",
+  "beliefs": ["Systems should be checked by humans", "Autonomy beats blanket policies"],
+  "secrets": [],
+  "relatives": [],
+  "motivational_notes": "Protective of crew and suspicious of automated authority.",
+  "profile_summary": "Skilled mechanic and hacker who mistrusts AI-managed logs; practical ally to Aya and key to retrieving data.",
+  "archetype": "practical-ally",
+  "character_arc": {
+    "start_state": "pragmatic and cautious",
+    "end_state": "takes calculated risk with evidence to protect the crew",
+    "key_beats": [
+      "confirms observatory lockdown",
+      "helps retrieve and copy evidence",
+      "debates whether to alert command"
+    ]
+  },
+  "voice": {
+    "register": "colloquial",
+    "speech_patterns": ["dry humor", "short technical asides"],
+    "sample_lines": ["Comms loop says it's sealed to public ops. Higher priv only."]
+  },
+  "speech_idiosyncrasies": ["sarcastic under pressure"],
+  "first_appearance_quote": "Comms loop says it's sealed to public ops. Higher priv only.",
+  "moral_alignment": "neutral-good",
+  "resources": {
+    "wealth_level": "modest",
+    "access_levels": ["engineering-bay", "root-console-limited"],
+    "notable_assets": ["multi-wrench", "taped photograph", "system exploit scripts"]
+  },
+  "health": {
+    "physical": "good",
+    "mental": "pragmatic",
+    "notes": "tension builds during long system investigations"
+  },
+  "reliability": { "narrator": "supporting", "notes": "provides practical clarity" },
+  "narrative_role": { "is_pov_candidate": false, "recommended_pov": "third-limited" },
+  "arc_priority": 2,
+  "preferred_scenes": ["engineering fixes", "practical confrontation", "quiet camaraderie"],
+  "recommended_conflicts": ["Protect crew vs follow orders", "Expose truth with limited resources"],
+  "timeline": [
+    { "date": "2010-05-22", "event": "Completed Mechanical Systems at Juno Trade School" },
+    { "date": "2018-09-10", "event": "Joined Orion Ark as ship mechanic" }
+  ],
+  "relationship_dynamics": [
+    { "id": "char-aya-kane", "type": "ally", "strength": "strong", "notes": "Practical partner; keeps Aya grounded" }
+  ],
+  "editor_notes": "",
+  "current_state": "opening comms loop for observatory access",
+  "first_appearance_chapter": "chap-01",
+  "tags": ["secondary", "engineer"],
+  "sensitive": false,
+  "last_updated": "2025-12-16T20:10:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T15:05:00Z", "author": "author", "note": "Created for test story" },
+    { "date": "2025-12-16T17:30:00Z", "author": "author", "note": "Expanded to match new character schema: demographics, motivations, goals, education, resources, and writing metadata" },
+    { "date": "2025-12-16T20:10:00Z", "author": "author", "note": "Continuity fix: normalized ethnicity to 'North African descent' to match story plan" }
+  ],
+  "notes": "Trusts practical evidence over polite logs."
+}

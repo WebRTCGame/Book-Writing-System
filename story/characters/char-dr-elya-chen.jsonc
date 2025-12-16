@@ -1,0 +1,109 @@
+{
+  "id": "char-dr-elya-chen",
+  "name": "Dr. Elya Chen",
+  "aliases": ["Elya"],
+  "role": "supporting-scientist",
+  "age": 38,
+  "gender": "female",
+  "pronouns": "she/her",
+  "physical_description": "short, careful movements; always carries a data-pad and a set of spectral lenses",
+  "ethnicity": "East Asian",
+  "appearance": {
+    "height_cm": 162,
+    "build": "compact",
+    "distinguishing_features": ["spectral lenses", "ink-stained fingertips"],
+    "typical_clothing": "lab coat over practical slacks"
+  },
+  "motivations": [
+    "Understand the beacon's signal and structure",
+    "Preserve scientific truth",
+    "Publish findings to protect open science"
+  ],
+  "fears": [
+    "Research being weaponized or suppressed",
+    "Reputational damage if wrong",
+    "Complicity in hiding evidence"
+  ],
+  "past_trauma": [
+    {
+      "summary": "Had a promising paper retracted after a powerful sponsor suppressed contradictory data",
+      "impact": "Cautious about authoritative interference; allergic to institutional pressure",
+      "redacted": false
+    }
+  ],
+  "goals": {
+    "short_term": "Decode encoded response from beacon",
+    "long_term": "Map and characterize the dark lattice and publish peer-reviewed analysis"
+  },
+  "education": [
+    { "institution": "Interstellar Institute of Astrophysics", "field": "Astrophysics & Signal Analysis", "year_completed": 2010 }
+  ],
+  "occupation_history": [
+    { "role": "research scientist", "employer": "Interstellar Institute", "years": "2010-2024" }
+  ],
+  "languages": ["english", "mandarin"],
+  "cultural_background": "Academic communities with emphasis on peer-review and open data",
+  "place_of_birth": "Luma City, Planet Helios",
+  "date_of_birth": "1987-02-14",
+  "legal_status": "citizen",
+  "personality_traits": ["curious", "meticulous", "principled"],
+  "flaws": ["risk-averse when career is threatened", "overly cautious with uncertain data"],
+  "strengths": ["signal analysis", "statistical inference", "clear exposition"],
+  "emotional_state": "pensive",
+  "beliefs": ["Open data is key to robust science"],
+  "secrets": [],
+  "relatives": [],
+  "motivational_notes": "Will push for transparent analysis but may be swayed by threats to career or safety",
+  "profile_summary": "Experienced astrophysicist specialized in signal deconvolution; brings necessary expertise to decode the beacon's message.",
+  "archetype": "reluctant-expert",
+  "character_arc": {
+    "start_state": "principled and cautious",
+    "end_state": "decides whether to publish risky findings despite pressure",
+    "key_beats": [
+      "decodes beacon fragments",
+      "recognizes evidence suppression patterns",
+      "faces pressure to withhold publication"
+    ]
+  },
+  "voice": {
+    "register": "technical but accessible",
+    "speech_patterns": ["uses precise terminology", "calm analogies"],
+    "sample_lines": ["The modulation aligns with prime intervals — it's deliberate, not cosmic noise."]
+  },
+  "speech_idiosyncrasies": ["soft cadence when explaining complex points"],
+  "first_appearance_quote": "The handshake returned harmonic residues — someone encoded intent there.",
+  "moral_alignment": "lawful-good",
+  "resources": {
+    "wealth_level": "comfortable",
+    "access_levels": ["observatory-analyses", "research-archives"],
+    "notable_assets": ["research access token", "portable spectral lab"]
+  },
+  "health": {
+    "physical": "good",
+    "mental": "cautious",
+    "notes": "stressed when forced to choose secrecy"
+  },
+  "reliability": { "narrator": "reliable", "notes": "data-driven, less emotionally biased" },
+  "narrative_role": { "is_pov_candidate": false, "recommended_pov": "third-limited" },
+  "arc_priority": 3,
+  "preferred_scenes": ["lab analysis", "tense consultations", "ethical dilemmas"],
+  "recommended_conflicts": ["Publish vs suppress findings", "Protect colleagues vs open transparency"],
+  "timeline": [
+    { "date": "2010-06-01", "event": "Completed PhD in Signal Analysis" }
+  ],
+  "relationship_dynamics": [
+    { "id": "char-aya-kane", "type": "ally", "strength": "medium", "notes": "Technical partner; trusts Aya's instincts" },
+    { "id": "char-captain-mara-ahn", "type": "superior", "strength": "tense", "notes": "Chain-of-command friction possible" }
+  ],
+  "editor_notes": "",
+  "current_state": "decoding beacon residues",
+  "first_appearance_chapter": "chap-02",
+  "tags": ["scientist", "astrophysics", "supporting"],
+  "sensitive": false,
+  "last_updated": "2025-12-16T21:00:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T17:45:00Z", "author": "author", "note": "Created Dr. Elya Chen for test story" },
+    { "date": "2025-12-16T21:00:00Z", "author": "author", "note": "Continuity update: set first_appearance_chapter to chap-02 (appears in observatory lab)" }
+  ],
+  "notes": ""
+}

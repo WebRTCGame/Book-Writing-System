@@ -1,0 +1,112 @@
+{
+  "id": "char-captain-mara-ahn",
+  "name": "Captain Mara Ahn",
+  "aliases": ["Capt. Ahn"],
+  "role": "authority-figure",
+  "age": 47,
+  "gender": "female",
+  "pronouns": "she/her",
+  "physical_description": "tall, measured posture; crisp uniform with command patch",
+  "ethnicity": "Korean descent",
+  "appearance": {
+    "height_cm": 178,
+    "build": "commanding",
+    "distinguishing_features": ["command patch", "calm, steady gaze"],
+    "typical_clothing": "captain's uniform; ceremonial sash tied back"
+  },
+  "motivations": [
+    "Keep crew and mission safe",
+    "Maintain chain of command and mission integrity",
+    "Avoid unnecessary chaos or panic"
+  ],
+  "fears": [
+    "Mission failure or loss of life",
+    "Losing control of ship operations",
+    "Political fallout from scandal"
+  ],
+  "past_trauma": [
+    {
+      "summary": "Lost a previous crew on a mission that turned political",
+      "impact": "Prefers conservative decisions, wary of risky exposures",
+      "redacted": false
+    }
+  ],
+  "goals": {
+    "short_term": "Assess the archive breach without endangering crew",
+    "long_term": "Safely complete mission and preserve crew cohesion"
+  },
+  "education": [
+    { "institution": "Command Academy", "field": "Leadership & Crisis Management", "year_completed": 2002 }
+  ],
+  "occupation_history": [
+    { "role": "ship captain", "employer": "Orion Ark", "years": "2039-2046" }
+  ],
+  "languages": ["english", "korean"],
+  "cultural_background": "Military-style command tradition with focus on order",
+  "place_of_birth": "Seafront City, Planet Argo",
+  "date_of_birth": "1978-11-09",
+  "legal_status": "commissioned officer",
+  "personality_traits": ["decisive", "reserved", "protective"],
+  "flaws": ["risk-averse", "reluctant to share uncertain information"],
+  "strengths": ["strategic planning", "calm under pressure"],
+  "emotional_state": "controlled",
+  "beliefs": ["Command must prevent panic to protect mission"],
+  "secrets": [
+    { "text": "Received a private advisory to limit archival visibility from higher command", "redacted": true }
+  ],
+  "relatives": [],
+  "motivational_notes": "Will prioritize crew safety and mission over transparency unless persuaded otherwise",
+  "profile_summary": "Seasoned captain who values order and mission success; may clash with Aya's push for exposure.",
+  "archetype": "reluctant-leader",
+  "character_arc": {
+    "start_state": "conservative and protective",
+    "end_state": "potentially forced to choose transparency or concealment under pressure",
+    "key_beats": [
+      "receives report of scrubbed sector",
+      "orders controlled investigation",
+      "faces political pressure about findings"
+    ]
+  },
+  "voice": {
+    "register": "formal",
+    "speech_patterns": ["short commands", "measured reassurances"],
+    "sample_lines": ["We will investigate, but not at the cost of the crew's safety."]
+  },
+  "speech_idiosyncrasies": ["pauses before delivering difficult orders"],
+  "first_appearance_quote": "Orderly investigation. Do not alarm the crew until we know if there's danger.",
+  "moral_alignment": "lawful-neutral",
+  "resources": {
+    "wealth_level": "high (authority-based)",
+    "access_levels": ["full-ops", "command-archives"],
+    "notable_assets": ["command override token", "secure comm channel"]
+  },
+  "health": {
+    "physical": "good",
+    "mental": "steady",
+    "notes": "bears long-term stress of command"
+  },
+  "reliability": { "narrator": "authoritative", "notes": "filters information to maintain order" },
+  "narrative_role": { "is_pov_candidate": false, "recommended_pov": "third-limited" },
+  "arc_priority": 2,
+  "preferred_scenes": ["strategic meetings", "containment decisions", "moral confrontations"],
+  "recommended_conflicts": ["Safety vs transparency", "Obey command vs respond to evidence"],
+  "timeline": [
+    { "date": "2002-06-01", "event": "Graduated Command Academy" },
+    { "date": "2039-01-05", "event": "Assumed command of Orion Ark" }
+  ],
+  "relationship_dynamics": [
+    { "id": "char-aya-kane", "type": "subordinate", "strength": "tense", "notes": "respects Aya's skill but doubts her methods" },
+    { "id": "char-samir-iro", "type": "subordinate", "strength": "functional", "notes": "relies on Samir for technical assessments" }
+  ],
+  "editor_notes": "",
+  "current_state": "assessing reports and prioritizing crew safety",
+  "first_appearance_chapter": "chap-02",
+  "tags": ["authority", "captain", "ambiguous"],
+  "sensitive": true,
+  "last_updated": "2025-12-16T21:40:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T17:45:00Z", "author": "author", "note": "Created Captain Mara Ahn for test story; potential complicity plotted" },
+    { "date": "2025-12-16T21:40:00Z", "author": "author", "note": "Continuity fix: set first_appearance_chapter to chap-02 to match prose reference" }
+  ],
+  "notes": "May be sympathetic to crew but constrained by orders from higher command."
+}

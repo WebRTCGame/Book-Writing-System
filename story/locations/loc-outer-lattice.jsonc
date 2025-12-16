@@ -1,0 +1,39 @@
+{
+  "id": "loc-outer-lattice",
+  "name": "Outer Lattice — Dark Region",
+  "type": "space/anomaly",
+  "coordinates": { "system": "Orion Sector", "grid_x": 48, "grid_y": 48 },
+  "description": "A dark lattice that appears as a lattice-like void coiling through background stars and causing instrumentation to misread position and flux.",
+  "sensory_notes": {
+    "sight": "a ribbon of darkness that swallows starlight; faint directional pings",
+    "sound": "none (space); instruments register low-frequency harmonics",
+    "smell": null,
+    "touch": "navigation instability felt thru hull systems"
+  },
+  "hazards": ["navigation disruption", "instrumentation drift", "localized gravity anomalies"],
+  "notable_objects": [
+    { "id": "probe-frag-01", "description": "Faintly active probe fragment broadcasting a directional handshake" }
+  ],
+  "first_appearance_chapter": "chap-04",
+  "tags": ["anomaly", "lattice", "probe"],
+  "default_scene_hooks": ["probe sighted on approach", "directional handshake decoded", "close-run to map the lattice contour"],
+  "map_reference": "map-dark-lattice-A",
+  "mood_descriptors": ["alien", "ominous", "unfamiliar"],
+  "notes": "Instruments often misreport distances near the lattice; repeated exposure can corrupt navigation tables.",
+  "last_updated": "2025-12-16T18:40:00Z",
+  "owner": null,
+  "accessibility": { "public": false, "access_notes": "External anomaly; approach restricted by navigation safety" },
+  "permissions_required": ["navigation-clearance", "safety-protocol-readout"],
+  "resources_available": ["probe fragments (observable)", "directional telemetry traces"],
+  "relevant_events": [
+    { "date": "2025-12-16T16:05:00Z", "event": "Beacon handshake response detected; faint probe fragment observed" }
+  ],
+  "history": [
+    { "date": "2025-12-16T16:05:00Z", "note": "First recorded handshake response in this sector" }
+  ],
+  "tags_narrative": ["aims-investigation", "navigation-hazard"],
+  "revision_history": [
+    { "date": "2025-12-16T18:10:00Z", "author": "author", "note": "Created outer lattice anomaly for beacon/probe scenes" },
+    { "date": "2025-12-16T18:40:00Z", "author": "author", "note": "Validated anomaly against schema; added access, permissions, resources, events, narrative tags" }
+  ]
+}

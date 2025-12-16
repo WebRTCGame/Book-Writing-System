@@ -1,0 +1,61 @@
+{
+  "id": "loc-east-docks",
+  "name": "East Docks",
+  "type": "urban/industrial",
+  "coordinates": {
+    "system": "Orion Sector",
+    "grid_x": 47,
+    "grid_y": 48,
+    "grid_z": null
+  },
+  "description": "A row of rusted warehouses and cold salt air.",
+  "sensory_notes": {
+    "sight": "flickering sodium lamps, oil-sheen on water",
+    "sound": "creaking planks, distant horns, dripping condensate",
+    "smell": "tar and seaweed, engine oil",
+    "touch": "salt-slick railings, flaking paint"
+  },
+  "ambient_sound_profile": "low-frequency hull creaks under occasional cargo movements",
+  "lighting_conditions": "low sodium-orange light at night, functional white by day",
+  "ambient_temperature_C": 4,
+  "seasonal_variation": "minimal (controlled environment); occasional increased humidity after porting maneuvers",
+  "capacity": { "max_occupancy": 120, "typical_occupancy": "sparse at night" },
+  "accessibility": { "public": false, "access_notes": "Dock-master clearance required after hours" },
+  "security_level": "controlled",
+  "owner": "Orion Dock Consortium",
+  "maintenance": {
+    "status": "degraded",
+    "last_inspection": "2025-11-01T09:00:00Z",
+    "notes": "Minor corrosion on storage platforms; scheduled repair next dry-dock"
+  },
+  "hazards": ["slippery surfaces", "loose cargo straps", "exposed wiring in certain bays"],
+  "inhabitants": ["char-pierce-smith", "char-lena-sato"],
+  "notable_objects": [
+    { "id": "cargo-crate-42", "description": "weathered crate stamped with unregistered cargo sigils" },
+    { "id": "broken-lighthouse-lens", "description": "fragment of a navigational beacon lens; useful as a clue" }
+  ],
+  "connected_locations": ["loc-orion-market", "loc-shipping-hold-3"],
+  "first_appearance_chapter": "chap-02",
+  "tags": ["docks", "night", "industrial"],
+  "map_reference": "map-09-docks-section",
+  "resources_available": ["small cranes", "temporary storage lockers", "black-market contacts after hours"],
+  "permissions_required": ["dock-master clearance", "cargo-pass"],
+  "default_scene_hooks": ["secret meeting under cover of fog", "illegal cargo exchange", "quiet confrontation at dawn"],
+  "mood_descriptors": ["gloomy", "tense", "suspicious"],
+  "relevant_events": [
+    { "date": "2025-10-02T02:00:00Z", "event": "Unauthorized unloading reported; minor scuffle" }
+  ],
+  "history": [
+    { "date": "2040-01-01", "note": "Established as a small industrial port for local trade" }
+  ],
+  "notable_incidents": [
+    { "id": "incident-20251002-scuffle", "summary": "Unauthorized unloading; suspected smuggling" }
+  ],
+  "tags_narrative": ["good-for-ambush", "low-visibility", "smuggling-hub"],
+  "notes": "",
+  "last_updated": "2025-12-16T17:50:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T14:30:00Z", "author": "author-name", "note": "Initial entry" },
+    { "date": "2025-12-16T17:50:00Z", "author": "author-name", "note": "Expanded schema: coordinates, capacity, access/security, maintenance, hazards, connected_locations, scene hooks, resources, mood descriptors, history, and incidents" }
+  ]
+}

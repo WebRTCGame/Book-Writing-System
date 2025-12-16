@@ -1,0 +1,41 @@
+{
+  "id": "chap-02",
+  "title": "Moon Over The Docks",
+  "status": "draft",                   // draft / revised / final
+  "pov_character_id": "char-lena-sato",
+  "setting_location_id": "loc-east-docks",
+  "prose_file": "chapters/chap-02.md",
+  "parts": [
+    {
+      "id": "chap-02-part-01",
+      "sequence": 1,
+      "file": "story/chapters/chap-02_part-01-beacon.md",
+      "title": "Beacon Discovery",
+      "plot_lines": ["beacon","investigation"],
+      "summary": "Retrieve observatory frames and detect a prime-interval beacon; covertly copy evidence while avoiding automated monitors.",
+      "beats": ["beat-1", "beat-2"],
+      "estimated_word_count": 350,
+      "actual_word_count": 0,
+      "status": "draft",
+      "last_updated": "2025-12-16T15:25:00Z"
+    }
+  ],
+  "estimated_word_count": 2500,
+  "actual_word_count": 0,
+  "outline": [
+    "Arrive at docks",
+    "Confrontation with dock worker",
+    "Find a clue"
+  ],
+  "beats": [
+    { "id": "beat-1", "summary": "Lena arrives; atmosphere established" },
+    { "id": "beat-2", "summary": "Argument with dock worker; hint of alliance" }
+  ],
+  "tags": ["investigation", "night"],
+  "first_written": "2025-12-16T14:30:00Z",
+  "last_updated": "2025-12-16T14:30:00Z",
+  "revision_history": [
+    { "date": "2025-12-16T14:30:00Z", "author": "author-name", "note": "Initial outline" }
+  ],
+  "notes": ""
+}

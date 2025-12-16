@@ -1,0 +1,12 @@
+{
+  "id": "checks-2025-12-16T22:45:00Z",
+  "generated_at": "2025-12-16T22:45:00Z",
+  "scope": "full-check or targeted",
+  "issues": [
+    { "type": "broken_reference", "severity": "error", "file": "story/chapters/chap-XX.jsonc", "detail": "..." }
+  ],
+  "assessments": [
+    { "file": "story/continuity/assessment-story-main-2025-12-16T22:45:00Z.jsonc" }
+  ],
+  "summary": { "errors": 0, "warnings": 0, "infos": 0 }
+}

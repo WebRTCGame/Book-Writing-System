@@ -1,0 +1,70 @@
+{
+  "id": "chap-01",
+  "title": "Blank Sector",
+  "status": "draft",
+  "pov_character_id": "char-aya-kane",
+  "setting_location_id": "loc-orion-ark",
+  "prose_file": "story/chapters/chap-01.md",
+  "estimated_word_count": 2000,
+  "actual_word_count": 1750,
+  "parts": [
+    {
+      "id": "chap-01-part-01",
+      "sequence": 1,
+      "file": "story/chapters/chap-01_part-01-investigation.md",
+      "title": "Blank Sector — Discovery",
+      "plot_lines": ["pl-investigation"],
+      "summary": "Aya discovers an unsynced sector; with Samir she retrieves cached observatory frames and detects a deliberate prime-interval pulse, indicating someone signaled the sector before it was scrubbed.",
+      "estimated_word_count": 1000,
+      "actual_word_count": 900,
+      "beats": ["beat-1", "beat-2"],
+      "status": "draft",
+      "last_updated": "2025-12-17T01:15:00Z"
+    },
+    {
+      "id": "chap-01-part-02",
+      "sequence": 2,
+      "file": "story/chapters/chap-01_part-02-bypass.md",
+      "title": "Blank Sector — Bypass",
+      "plot_lines": ["pl-investigation","pl-concealment"],
+      "summary": "They decide not to trust command; Samir and Aya bypass monitoring to duplicate archive frames to an offline microdrive, triggering detection notices and hinting at a larger watch process.",
+      "estimated_word_count": 900,
+      "actual_word_count": 850,
+      "beats": ["beat-3"],
+      "status": "draft",
+      "last_updated": "2025-12-16T19:30:00Z"
+    }
+  ],
+  "outline": ["Discover blank sector", "Confront Samir", "Decide to bypass observatory lock"],
+  "beats": [
+    { "id": "beat-1", "summary": "Alarm; Aya sees blanked sector" },
+    { "id": "beat-2", "summary": "Samir confirms observatory lockdown; prime-interval beacon detected" },
+    { "id": "beat-3", "summary": "They duplicate evidence offline and notice a watch response" }
+  ],
+  "tags": ["discovery", "ship", "mystery"],
+  "first_written": "2025-12-16T16:20:00Z",
+  "last_updated": "2025-12-17T01:15:00Z",
+  "checks": {
+    "last_run": "2025-12-17T00:00:00Z",
+    "report": "story/continuity/checks-report-2025-12-17T00:00:00Z.jsonc",
+    "continuity_report": "story/continuity/continuity-chap-01-2025-12-16T22:45:00Z.jsonc",
+    "status": "ok",
+    "assessments": [
+      "story/continuity/assessment-chap-01-2025-12-17T00:00:00Z.jsonc"
+    ]
+  },
+  "revision_history": [
+    { "date": "2025-12-16T15:15:00Z", "author": "author", "note": "Initial chapter draft" },
+    { "date": "2025-12-16T16:20:00Z", "author": "author", "note": "Expanded chapter to improve atmosphere and set up observatory break-in" },
+    { "date": "2025-12-16T19:30:00Z", "author": "author", "note": "Split chapter into two parts and added full chapter prose (combined); updated actual_word_count" },
+    { "date": "2025-12-16T19:50:00Z", "author": "author", "note": "Validated parts and combined chapter prose; confirmed part word counts within part bounds (300–1200); updated last_updated" },
+    { "date": "2025-12-16T20:10:00Z", "author": "author", "note": "Continuity check: confirm parts, beats, character/location references; applied minor fixes" },
+    { "date": "2025-12-16T20:30:00Z", "author": "author", "note": "Automated checks run; no errors found (see checks-report-2025-12-16T20:30:00Z.jsonc)" },
+    { "date": "2025-12-16T21:40:00Z", "author": "author", "note": "Automated checks re-run; no outstanding issues" },
+    { "date": "2025-12-16T22:00:00Z", "author": "author", "note": "Cross-reference pass completed; no issues found (linked aggregated checks report)" },
+    { "date": "2025-12-16T22:45:00Z", "author": "author", "note": "Full-check run (local); no issues found; linked checks-report-2025-12-16T22:45:00Z.jsonc" },
+    { "date": "2025-12-17T00:00:00Z", "author": "copilot", "note": "Assessment run completed for chap-01; assessment artifact added" },
+    { "date": "2025-12-17T01:15:00Z", "author": "copilot-rewrite", "note": "Applied conservative rewrite iteration 1 to part-01; backup stored; ran checks and assessments" }
+  ],
+  "notes": ""
+}
