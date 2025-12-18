@@ -1,0 +1,14 @@
+{
+  "id": "chap-11",
+  "title": "Test Chapter Eleven",
+  "sequence": 11,
+  "estimated_word_count": 2000,
+  "actual_word_count": 1750,
+  "draft_status": "draft",
+  "dominant_tone": "tense, atmospheric",
+  "chapter_level_rhythm": "Disruption",
+  "act_id": "act-06",
+  "parts": [ { "id": "part-11-01", "sequence": 1, "file": "story/parts/part-11-01-full.md" } ],
+  "last_updated": "2025-12-18T01:50:00Z",
+  "revision_history": [ { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Placeholder created" }, { "date": "2025-12-18T01:50:00Z", "author": "copilot", "note": "Expanded chapter prose to full draft (applied to chap-11.md and part-11-01-full.md)" } ]
+}

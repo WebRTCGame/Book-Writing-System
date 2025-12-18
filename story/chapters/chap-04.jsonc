@@ -4,13 +4,17 @@
   "story_id": "story-01",
   "sequence": 4,
   "estimated_word_count": 2000,
-  "actual_word_count": 0,
-  "draft_status": "in-progress",
-  "last_updated": "2025-12-16T19:50:00Z",
+  "actual_word_count": 1700,
+  "draft_status": "draft",
+  "dominant_tone": "tense, atmospheric",
+  "chapter_level_rhythm": "Disruption",
+  "act_id": "act-02",
+  "last_updated": "2025-12-18T00:10:00Z",
   "revision_history": [
     { "date": "2025-12-16T15:00:00Z", "author": "author", "note": "Initial creation of chapter." },
     { "date": "2025-12-16T17:30:00Z", "author": "author", "note": "Expanded content and refined structure." },
-    { "date": "2025-12-16T19:50:00Z", "author": "author", "note": "Bumped estimated_word_count to meet story_config min/target" }
+    { "date": "2025-12-16T19:50:00Z", "author": "author", "note": "Bumped estimated_word_count to meet story_config min/target" },
+    { "date": "2025-12-18T00:10:00Z", "author": "copilot", "note": "Filled metadata: tone, rhythm, act assignment and actual_word_count" }
   ],
   "content": [
     {

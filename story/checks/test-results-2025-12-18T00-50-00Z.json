@@ -1,0 +1,13 @@
+{
+  "id": "test-results-2025-12-18T00-50:00Z",
+  "generated_at": "2025-12-18T00:50:00Z",
+  "summary": { "total": 6, "passed": 6, "failed": 0, "skipped": 0, "duration_seconds": 3.6 },
+  "details": [
+    { "test": "test_simulation_mode.py::test_simulated_run_artifact_exists", "status": "passed" },
+    { "test": "tests/test_story_flow.py::test_full_check_reports_warnings_and_continuity_file", "status": "passed" },
+    { "test": "tests/test_story_flow.py::test_iterative_rewrite_suggestion_creates_suggested_file", "status": "passed" },
+    { "test": "tests/test_story_flow.py::test_story_has_expected_chapters", "status": "passed" },
+    { "test": "tests/test_simulation_policy_enforced.py::test_simulation_policy_files_exist", "status": "passed" },
+    { "test": "tests/test_assessments.py::test_assessment_results_exist_and_cover_all_chapters", "status": "passed" }
+  ]
+}

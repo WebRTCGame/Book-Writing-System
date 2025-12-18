@@ -7,6 +7,7 @@
   "prose_file": "story/chapters/chap-03.md",
   "estimated_word_count": 1800,
   "actual_word_count": 2000,
+  "act_id": "act-02",
   "parts": [
     {
       "id": "chap-03-part-01",
@@ -21,6 +22,7 @@
       "status": "draft",
       "last_updated": "2025-12-17T03:00:00Z"
     },
+
     {
       "id": "chap-03-part-02",
       "sequence": 2,

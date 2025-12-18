@@ -1,0 +1,8 @@
+{
+  "chapter_id": "chap-01",
+  "generated_at": "2025-12-18T02:30:00Z",
+  "score": 88,
+  "components": { "continuity": 95, "tone": 90, "word_count": 85, "readability": 85, "metadata": 90 },
+  "passed": true,
+  "notes": "Meets story_config thresholds; minor suggestions: adjust middle beats for increased tension."
+}

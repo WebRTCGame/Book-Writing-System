@@ -1,0 +1,9 @@
+{
+  "chapter_id": "chap-01",
+  "generated_at": "2025-12-18T00:00:00Z",
+  "issues": [
+    { "type": "word_count", "level": "warning", "message": "actual_word_count (45) below min_chapter_words (1500)" },
+    { "type": "tone_missing", "level": "warning", "message": "chapter_tone not specified; expected 'tense, atmospheric' from story_config" },
+    { "type": "act_missing", "level": "info", "message": "chapter is not explicitly assigned to an act" }
+  ]
+}

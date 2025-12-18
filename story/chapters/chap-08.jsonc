@@ -1,0 +1,14 @@
+{
+  "id": "chap-08",
+  "title": "Test Chapter Eight",
+  "sequence": 8,
+  "estimated_word_count": 2000,
+  "actual_word_count": 1700,
+  "draft_status": "draft",
+  "dominant_tone": "tense, atmospheric",
+  "chapter_level_rhythm": "Disruption",
+  "act_id": "act-05",
+  "parts": [ { "id": "part-08-01", "sequence": 1, "file": "story/parts/part-08-01-full.md" } ],
+  "last_updated": "2025-12-18T01:20:00Z",
+  "revision_history": [ { "date": "2025-12-18T00:10:00Z", "author": "copilot", "note": "Converted placeholder to draft with metadata and word-count" }, { "date": "2025-12-18T01:20:00Z", "author": "copilot", "note": "Expanded chapter prose to full draft (applied to chap-08.md and part-08-01-full.md)" } ]
+}

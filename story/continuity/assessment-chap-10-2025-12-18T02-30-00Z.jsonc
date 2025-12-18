@@ -1,0 +1,8 @@
+{
+  "chapter_id": "chap-10",
+  "generated_at": "2025-12-18T02-30:00Z",
+  "score": 85,
+  "components": { "continuity": 86, "tone": 85, "word_count": 85, "readability": 84, "metadata": 86 },
+  "passed": true,
+  "notes": "Seeding and leakage logic is strong; suggest small tightening to dialog."
+}

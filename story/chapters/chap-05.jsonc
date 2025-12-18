@@ -1,0 +1,14 @@
+{
+  "id": "chap-05",
+  "title": "Test Chapter Five",
+  "sequence": 5,
+  "estimated_word_count": 2000,
+  "actual_word_count": 1750,
+  "draft_status": "draft",
+  "dominant_tone": "tense, atmospheric",
+  "chapter_level_rhythm": "Disruption",
+  "act_id": "act-03",
+  "parts": [ { "id": "part-05-01", "sequence": 1, "file": "story/parts/part-05-01-full.md" } ],
+  "last_updated": "2025-12-18T00:45:00Z",
+  "revision_history": [ { "date": "2025-12-18T00:10:00Z", "author": "copilot", "note": "Converted placeholder to draft with metadata and word-count" }, { "date": "2025-12-18T00:45:00Z", "author": "copilot", "note": "Expanded chapter prose to full draft (applied to chap-05.md and part-05-01-full.md)" } ]
+}

@@ -1,99 +1,81 @@
 {
-  "generated_at": "2025-12-18T13:36:24Z",
-  "act_plan": [
+  "id": "act-plan-2025-12-18T00:30:00Z",
+  "generated_at": "2025-12-18T00:30:00Z",
+  "acts": [
     {
-      "act": 1,
+      "id": "act-00",
+      "title": "Baseline Equilibrium",
+      "sequence": 0,
+      "chapters": ["chap-01"],
+      "dominant_tone": "tense, atmospheric",
+      "act_level_rhythm": "Setup",
+      "notes": "Baseline chapter establishing quiet and the initial anomaly."
+    },
+    {
       "id": "act-01",
+      "title": "Intrusion",
       "sequence": 1,
-      "chapters": [
-        1
-      ],
-      "expected_macro_phases": [
-        "Hope"
-      ],
-      "suggested_act_level_rhythm": "Setup"
+      "chapters": ["chap-02"],
+      "dominant_tone": "tense, atmospheric",
+      "act_level_rhythm": "Escalation",
+      "notes": "Signal analysis and initial bearing discovered."
     },
     {
-      "act": 2,
       "id": "act-02",
+      "title": "Orientation",
       "sequence": 2,
-      "chapters": [
-        2,
-        3
-      ],
-      "expected_macro_phases": [
-        "Unease",
-        "Threat"
-      ],
-      "suggested_act_level_rhythm": "Escalation"
+      "chapters": ["chap-03","chap-04"],
+      "dominant_tone": "tense, atmospheric",
+      "act_level_rhythm": "Escalation",
+      "notes": "Probe discovery and early decisions on escalation."
     },
     {
-      "act": 3,
       "id": "act-03",
+      "title": "Expansion",
       "sequence": 3,
-      "chapters": [
-        4,
-        5
-      ],
-      "expected_macro_phases": [
-        "Triumph",
-        "Resolve"
-      ],
-      "suggested_act_level_rhythm": "Escalation"
+      "chapters": ["chap-05","chap-06"],
+      "dominant_tone": "tense, atmospheric",
+      "act_level_rhythm": "Escalation",
+      "notes": "Investigation widens and obfuscation patterns appear."
     },
     {
-      "act": 4,
       "id": "act-04",
+      "title": "Tonal Inversion / Midpoint",
       "sequence": 4,
-      "chapters": [
-        6
-      ],
-      "expected_macro_phases": [
-        "Catastrophe"
-      ],
-      "suggested_act_level_rhythm": "Lock-in"
+      "chapters": ["chap-07"],
+      "dominant_tone": "tense, atmospheric",
+      "act_level_rhythm": "Crisis",
+      "notes": "A key inversion or revelation centered in chapter 7."
     },
     {
-      "act": 5,
       "id": "act-05",
+      "title": "Constriction",
       "sequence": 5,
-      "chapters": [
-        7,
-        8,
-        9
-      ],
-      "expected_macro_phases": [
-        "Hope",
-        "Unease",
-        "Threat"
-      ],
-      "suggested_act_level_rhythm": "Pressure"
+      "chapters": ["chap-08","chap-09"],
+      "dominant_tone": "tense, atmospheric",
+      "act_level_rhythm": "Crisis",
+      "notes": "Evidence ties the silence to institutional obfuscation."
     },
     {
-      "act": 6,
       "id": "act-06",
+      "title": "Collapse",
       "sequence": 6,
-      "chapters": [
-        10,
-        11
-      ],
-      "expected_macro_phases": [
-        "Triumph",
-        "Resolve"
-      ],
-      "suggested_act_level_rhythm": "Collapse"
+      "chapters": ["chap-10","chap-11"],
+      "dominant_tone": "tense, atmospheric",
+      "act_level_rhythm": "Crisis",
+      "notes": "Tensions peak and choices narrow."
     },
     {
-      "act": 7,
       "id": "act-07",
+      "title": "Resolution",
       "sequence": 7,
-      "chapters": [
-        12
-      ],
-      "expected_macro_phases": [
-        "Catastrophe"
-      ],
-      "suggested_act_level_rhythm": "Resolution"
+      "chapters": ["chap-12"],
+      "dominant_tone": "tense, atmospheric",
+      "act_level_rhythm": "Resolution",
+      "notes": "Crew aligns findings and prepares decisive action."
     }
+  ],
+  "revision_history": [
+    { "date": "2025-12-18T00:30:00Z", "author": "copilot", "note": "Generated act plan from chapter assignments and story_config distribution" }
   ]
 }

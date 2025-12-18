@@ -1,0 +1,22 @@
+{
+  "type": "object",
+  "required": ["id","scope","target_id","generated_at","assessor","confidence","scores","summary","last_updated"],
+  "properties": {
+    "id": { "type": "string" },
+    "scope": { "enum": ["story","chapter","part"] },
+    "target_id": { "type": "string" },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "assessor": { "type": "string" },
+    "confidence": { "type": "integer", "minimum": 0, "maximum": 100 },
+    "scores": {
+      "type": "object",
+      "patternProperties": {
+        "^[a-z_]+$": { "type": "integer", "minimum": 0, "maximum": 100 }
+      }
+    },
+    "recommended_actions": {
+      "type": "array",
+      "items": { "type": "object", "required": ["action","priority"] }
+    }
+  }
+}

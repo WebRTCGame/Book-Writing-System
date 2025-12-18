@@ -1,0 +1,14 @@
+{
+  "id": "chap-12",
+  "title": "Test Chapter Twelve",
+  "sequence": 12,
+  "estimated_word_count": 2000,
+  "actual_word_count": 1800,
+  "draft_status": "draft",
+  "dominant_tone": "tense, atmospheric",
+  "chapter_level_rhythm": "PartialResolution",
+  "act_id": "act-07",
+  "parts": [ { "id": "part-12-01", "sequence": 1, "file": "story/parts/part-12-01-full.md" } ],
+  "last_updated": "2025-12-18T02:10:00Z",
+  "revision_history": [ { "date": "2025-12-18T00:10:00Z", "author": "copilot", "note": "Converted placeholder to draft with metadata and word-count" }, { "date": "2025-12-18T02:10:00Z", "author": "copilot", "note": "Expanded chapter prose to full draft (applied to chap-12.md and part-12-01-full.md)" } ]
+}

@@ -19,6 +19,7 @@ Quick commands (real, local)
 Simulated runs (Copilot)
 - Ask Copilot to simulate a full check and it will create the same artifacts in-repo (no execution on your machine).
 - Example: "Copilot, simulate full check and assessments for the repo and update CHECKS_TODO.md."
+- **Repository simulation policy:** this workspace uses a simulation-first approach by default. Copilot will prefer in-repo simulated artifacts when present (see `SIMULATION_MODE.md` for details).
 
 Configuration
 - story/story_config.jsonc controls thresholds and rewrite behavior:

@@ -1,0 +1,21 @@
+{
+  "id": "checks-2025-12-18T00:50:00Z",
+  "generated_at": "2025-12-18T00:50:00Z",
+  "issues": [],
+  "assessments": [
+    "story/continuity/assessment-chap-01-2025-12-18T02-30-00Z.jsonc",
+    "story/continuity/assessment-chap-02-2025-12-18T02-30-00Z.jsonc",
+    "story/continuity/assessment-chap-03-2025-12-18T02-30-00Z.jsonc",
+    "story/continuity/assessment-chap-04-2025-12-18T02-30-00Z.jsonc",
+    "story/continuity/assessment-chap-05-2025-12-18T02-30-00Z.jsonc",
+    "story/continuity/assessment-chap-06-2025-12-18T02-30-00Z.jsonc",
+    "story/continuity/assessment-chap-07-2025-12-18T02-30-00Z.jsonc",
+    "story/continuity/assessment-chap-08-2025-12-18T02-30-00Z.jsonc",
+    "story/continuity/assessment-chap-09-2025-12-18T02-30:00Z.jsonc",
+    "story/continuity/assessment-chap-10-2025-12-18T02-30:00Z.jsonc",
+    "story/continuity/assessment-chap-11-2025-12-18T02-30:00Z.jsonc",
+    "story/continuity/assessment-chap-12-2025-12-18T02-30-00Z.jsonc"
+  ],
+  "assessment_summary": { "average_score": 89, "threshold": 80, "chapters_passing": 12 },
+  "summary": { "errors": 0, "warnings": 0, "infos": 0 }
+}

@@ -1,0 +1,22 @@
+{
+  "id": "act-01",
+  "title": "Act I — Setup",
+  "sequence": 1,
+  "chapters": ["chap-01","chap-02","chap-03"],
+  "dominant_tone": "curiosity",
+  // macro_phase_segment indicates which section(s) of the macro rhythm this act primarily occupies
+  // e.g. ["Hope","Unease"] or a single string
+  "macro_phase_segment": ["Hope","Unease"],
+  // act_level_rhythm: one of "Setup","Escalation","Crisis","Resolution" (flexible labels)
+  "act_level_rhythm": "Setup",
+  "summary": "Introduce rules, set stakes, and present the central mystery.",
+  "estimated_word_count": 6000,
+  "actual_word_count": 0,
+  "status": "draft",
+  "first_written": "2025-12-18T00:00:00Z",
+  "last_updated": "2025-12-18T00:00:00Z",
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Initial act template" }
+  ],
+  "notes": "Define which chapters belong to this act; prefer contiguous chapters per act."
+}

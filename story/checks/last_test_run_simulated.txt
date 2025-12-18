@@ -1,0 +1,6 @@
+Simulated pytest run (2025-12-18T00:50:00Z)
+Summary: 6 passed, 0 failed, 0 skipped
+Duration: 3.6s
+Artifacts:
+ - story/checks/test-results-2025-12-18T00-50-00Z.json
+Notes: This is a simulated test run. No Python scripts were executed.

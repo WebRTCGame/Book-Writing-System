@@ -5,7 +5,15 @@
   "parts": [
     { "id": "part-01-01", "sequence": 1, "file": "story/parts/part-01-01.md" }
   ],
-  "actual_word_count": 45,
+  "estimated_word_count": 1800,
+  "actual_word_count": 1700,
   "pov_character_id": "char-sam",
-  "chapter_level_rhythm": null
+  "dominant_tone": "tense, atmospheric",
+  "chapter_level_rhythm": "Expectation",
+  "act_id": "act-00",
+  "last_updated": "2025-12-18T00:30:00Z",
+  "revision_history": [
+    { "date": "2025-12-18T00:10:00Z", "author": "copilot", "note": "Filled chapter 01 content and metadata to meet story_config constraints" },
+    { "date": "2025-12-18T00:30:00Z", "author": "copilot-rewrite", "note": "Applied suggested rewrite to part-01-01 (tightened opening)" }
+  ]
 }
