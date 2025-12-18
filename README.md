@@ -34,7 +34,12 @@ Key artifact locations
   - continuity-chap-<NN>-<ts>.jsonc (per-chapter continuity)
   - assessment-*.jsonc (part/chapter/story assessments)
   - rewrite-report-<ts>.jsonc (rewrite actions)
-- story/Assessment_Results.md — human-readable assessment table (latest runs)
+- story/tone_plan.jsonc — generated mapping of chapters to macro phases (created by tools/plan_rhythm.py)
+- story/act_plan.jsonc — generated mapping of acts to chapters and act-level expected phases (created by tools/plan_rhythm.py)
+- story/suggestions/ — planner-suggested annotations (reviewable JSON files)
+- story/acts/ — act definition files (e.g., act-01.jsonc following templates/acts_schema.jsonc)
+
+Note: this repository assumes `acts.auto_apply_annotations: true` by default, so planner suggestions may be applied automatically when `--apply` is used. Review `story/suggestions/` for dry-run outputs before applying.- story/Assessment_Results.md — human-readable assessment table (latest runs)
 - story/CHECKS_TODO.md — per-run checklist (updated each run)
 - story/rewrites/ & story/rewrites/backups/ — suggested rewrites and backups
 - chapters/, characters/, locations/, interactions/ — content/input files

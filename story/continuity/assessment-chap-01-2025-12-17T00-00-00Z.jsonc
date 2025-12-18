@@ -1,0 +1,12 @@
+{
+  "id": "assessment-chap-01-2025-12-17T00:00:00Z",
+  "generated_at": "2025-12-17T00:00:00Z",
+  "scope": "chapter",
+  "target_id": "chap-01",
+  "scores": {
+    "story_quality": 50,
+    "continuity": 50,
+    "interest": 60
+  },
+  "summary": "Low story quality - candidate for rewrite"
+}

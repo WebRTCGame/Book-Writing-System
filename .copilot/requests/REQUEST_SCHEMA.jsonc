@@ -1,0 +1,6 @@
+{
+  "id": "runchecks-2025-12-17T01:00:00Z",
+  "command": "run_checks",
+  "args": ["--full", "--auto-rewrite"],  // allowed args: --full, --auto-rewrite
+  "token": "<optional-token-if-agent_configured>"
+}

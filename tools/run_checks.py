@@ -126,6 +126,45 @@ def valid_url(u):
     except:
         return False
 
+# Default macro rhythm sequence (taken from Tone.md). Can be customized in story_config.jsonc
+DEFAULT_MACRO_SEQUENCE = ["Hope","Unease","Relief","Threat","Triumph","Loss","Resolve","Catastrophe","Meaning"]
+
+# Default act distribution aligned with Tone.md (Act 0 baseline + Acts I–VII)
+DEFAULT_ACT_DISTRIBUTION = [
+    ("act-00", 5),
+    ("act-01", 10),
+    ("act-02", 15),
+    ("act-03", 15),
+    ("act-04", 10),
+    ("act-05", 20),
+    ("act-06", 15),
+    ("act-07", 10)
+]
+
+# Tone schema file (canonical enums & guidance)
+TONE_SCHEMA_FILE = os.path.join(ROOT, "copilot-instructions", "templates", "tone_schema.jsonc")
+
+def load_tone_schema():
+    try:
+        return load_jsonc(TONE_SCHEMA_FILE)
+    except Exception:
+        return {}
+
+def get_expected_macro_phase(ch_index, total_chapters, config):
+    """Return the expected macro phase for chapter index (1-based) given the story config.
+    Mapping approach: repeat the macro sequence `rhythm_cycles` times and evenly distribute across chapters.
+    """
+    try:
+        seq = config.get('macro_rhythm_sequence', DEFAULT_MACRO_SEQUENCE)
+        cycles = max(1, int(config.get('rhythm_cycles', 1)))
+        total_phases = len(seq) * cycles
+        if not total_chapters or ch_index is None:
+            return None
+        position = ((ch_index - 1) * total_phases) // total_chapters
+        return seq[position % len(seq)]
+    except Exception:
+        return None
+
 def compute_assessment_from_chapter(chap_obj, chap_issues, prose_text, chapter_metrics, config):
     """
     Simple heuristic scoring. Start at 100 for each category then subtract weighted penalties.
@@ -252,6 +291,8 @@ def append_assessment_md(assessment_objs, md_path):
 
 def run_full_check():
     now = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+    # safe timestamp for filenames (Windows does not allow ':')
+    safe_now = now.replace(":","-")
     ensure_dir(CONTINUITY_DIR)
     report_issues = []
     infos = []
@@ -261,6 +302,26 @@ def run_full_check():
     except Exception as e:
         report_issues.append({"type":"config_load","severity":"error","file":CONFIG_FILE,"detail":str(e),"recommendation":"Fix or create story_config.jsonc"})
         config = {}
+    # Load tone schema for canonical enums
+    tone_schema = load_tone_schema()
+    MACRO_PHASES = tone_schema.get('macro_phases', DEFAULT_MACRO_SEQUENCE)
+    CHAPTER_RHYTHMS_ALLOWED = tone_schema.get('chapter_level_rhythms', ["Expectation","Disruption","PartialResolution"])
+    SCENE_RHYTHMS_ALLOWED = tone_schema.get('scene_rhythms', ["Tension","Action","Aftermath"])
+    ACT_RHYTHMS_ALLOWED = tone_schema.get('act_level_rhythms', ["Setup","Escalation","Crisis","Resolution","Coda"]) 
+    # Load acts policy config and helpers
+    try:
+        from tools.act_policy import load_acts_policy, severity_for_policy
+        acts_policy = load_acts_policy(config)
+    except Exception:
+        acts_policy = {
+            "require_act_files": True,
+            "missing_act_policy": "warning",
+            "act_tone_mismatch_policy": "warning",
+            "missing_chapter_act_policy": "warning",
+            "auto_assign_chapters": False,
+            "auto_apply_annotations": False
+        }
+
     # Load characters, locations, chapters
     chars = {}
     for f in find_jsonc_files("characters/*.jsonc"):
@@ -280,9 +341,21 @@ def run_full_check():
             o = load_jsonc(f); chaps[o['id']] = (o, f)
         except Exception as e:
             report_issues.append({"type":"schema","severity":"error","file":f,"detail":str(e)})
+
+    # Load acts (optional but recommended)
+    acts = {}
+    for f in find_jsonc_files("acts/*.jsonc"):
+        try:
+            o = load_jsonc(f); acts[o['id']] = (o, f)
+        except Exception as e:
+            report_issues.append({"type":"schema","severity":"error","file":f,"detail":str(e)})
+    if not acts:
+        sev = severity_for_policy(acts_policy.get('missing_act_policy', 'warning'))
+        report_issues.append({"type":"acts_missing","severity":sev,"file":CONFIG_FILE,"detail":"No act files found under story/acts/. Consider adding act definitions or setting 'acts_per_book' to 0 to disable act-level checks","recommendation":"Add act files following templates/acts_schema.jsonc or set acts_per_book to 0 in story_config.jsonc"})
+
     # ID uniqueness & format
     id_map = {}
-    for idv, path in {**chars, **locs, **{k:v[1] for k,v in chaps.items()}}.items():
+    for idv, path in {**chars, **locs, **{k:v[1] for k,v in chaps.items()}, **{k:v[1] for k,v in acts.items()}}.items():
         if idv in id_map:
             report_issues.append({"type":"duplicate_id","severity":"error","file":path,"detail":f"Duplicate id {idv} also in {id_map[idv]}","recommendation":"Remove/rename duplicate id"})
         else:
@@ -304,6 +377,29 @@ def run_full_check():
         loc = chap_obj.get("setting_location_id")
         if loc and loc not in locs:
             chap_issues.append({"type":"broken_reference","severity":"error","file":chap_file,"detail":f"setting_location_id '{loc}' not found","recommendation":"Add location or correct id"})
+
+        # Act assignment checks: chapter should belong to exactly one act unless acts are not defined
+        chapter_act_id = chap_obj.get('act_id')
+        found_in_acts = [aid for aid, (aobj, apath) in acts.items() if chap_id in aobj.get('chapters', [])]
+        if not acts:
+            # no acts defined, skip checks
+            pass
+        else:
+            if chapter_act_id and chapter_act_id not in acts:
+                chap_issues.append({"type":"broken_reference","severity":"warning","file":chap_file,"detail":f"act_id '{chapter_act_id}' not found in acts/, but acts exist","recommendation":"Set a valid act_id or add the act file"})
+            if not chapter_act_id and not found_in_acts:
+                sev = severity_for_policy(acts_policy.get('missing_chapter_act_policy', 'warning'))
+                chap_issues.append({"type":"act_missing","severity":sev,"file":chap_file,"detail":"Chapter not assigned to an act (no 'act_id' and not listed in any act file)","recommendation":"Add 'act_id' to chapter or add chapter id to an act file in story/acts/"})
+            if chapter_act_id and found_in_acts and chapter_act_id not in found_in_acts:
+                sev = severity_for_policy(acts_policy.get('missing_chapter_act_policy', 'warning'))
+                chap_issues.append({"type":"act_mismatch","severity":sev,"file":chap_file,"detail":f"Chapter's 'act_id' ('{chapter_act_id}') does not match act files which list it in {found_in_acts}","recommendation":"Fix chapter.act_id or update act file to match desired assignment"})
+            if len(found_in_acts) > 1:
+                sev = severity_for_policy(acts_policy.get('missing_chapter_act_policy', 'warning'))
+                chap_issues.append({"type":"act_multiple","severity":sev,"file":chap_file,"detail":f"Chapter appears in multiple act files: {found_in_acts}","recommendation":"Ensure chapter belongs to a single act or document intentional duplication in act notes"})
+            if chapter_act_id and found_in_acts and chapter_act_id not in found_in_acts:
+                chap_issues.append({"type":"act_mismatch","severity":"warning","file":chap_file,"detail":f"Chapter's 'act_id' ('{chapter_act_id}') does not match act files which list it in {found_in_acts}","recommendation":"Fix chapter.act_id or update act file to match desired assignment"})
+            if len(found_in_acts) > 1:
+                chap_issues.append({"type":"act_multiple","severity":"warning","file":chap_file,"detail":f"Chapter appears in multiple act files: {found_in_acts}","recommendation":"Ensure chapter belongs to a single act or document intentional duplication in act notes"})
         # parts sequencing and file checks
         parts = chap_obj.get("parts", [])
         seqs = []
@@ -380,11 +476,11 @@ def run_full_check():
                 chap_issues.append({"type":"reading_level_extreme","severity":"warning","file":chap_file,"detail":f"Unusual reading grade: {reading_grade}. Consider adjusting for target audience."})
         # compute readability score
         readability = readability_score_from_grade(reading_grade)
-        chapter_metrics = {"reading_grade": reading_grade, "readability": readability, "pii_count": len(pii_matches)}
         # PII detection in prose and metadata
         pii_matches = detect_pii(prose_text)
         for m in pii_matches:
             chap_issues.append({"type":"pii_detected","severity":"error","file":chap_file,"detail":f"Detected {m['type']} in prose: {m['value']}. Remove or redact.", "recommendation":"Redact or obfuscate PII"})
+        chapter_metrics = {"reading_grade": reading_grade, "readability": readability, "pii_count": len(pii_matches)}
         # source URL validation for chapter-level sources (if present)
         if "sources" in chap_obj:
             for s in chap_obj.get("sources", []):
@@ -393,6 +489,46 @@ def run_full_check():
                     chap_issues.append({"type":"sources_url_invalid","severity":"warning","file":chap_file,"detail":f"Source URL appears invalid: {url}", "recommendation":"Fix or remove URL"})
                 if "retrieval_date" not in s:
                     chap_issues.append({"type":"sources_missing","severity":"warning","file":chap_file,"detail":"Source entry missing 'retrieval_date'","recommendation":"Add retrieval_date"})
+
+        # --- Tone & rhythm checks (new) ---
+        ch_num = chapter_number(chap_id)
+        expected_phase = get_expected_macro_phase(ch_num, config.get('chapters_per_book'), config)
+        chap_macro = chap_obj.get('macro_phase')
+        if not chap_macro:
+            chap_issues.append({"type":"tone_missing","severity":"warning","file":chap_file,"detail":"Chapter missing 'macro_phase' tonal metadata","recommendation":"Add 'macro_phase' consistent with story_config.macro_rhythm_sequence or leave 'TBD' if undecided"})
+        else:
+            # validate value against canonical macro phases
+            if chap_macro not in MACRO_PHASES:
+                chap_issues.append({"type":"macro_phase_invalid","severity":"warning","file":chap_file,"detail":f"Chapter macro_phase '{chap_macro}' is not in canonical macro_phases: {MACRO_PHASES}","recommendation":"Use one of the canonical macro_phases or update templates/tone_schema.jsonc"})
+            if expected_phase and chap_macro != expected_phase:
+                chap_issues.append({"type":"tone_mismatch","severity":"warning","file":chap_file,"detail":f"Chapter macro_phase '{chap_macro}' differs from expected '{expected_phase}' based on story rhythm mapping","recommendation":"Review chapter tone or update chapter metadata to reflect intentional deviation"})
+        # chapter_level_rhythm validity
+        clr = chap_obj.get('chapter_level_rhythm')
+        if not clr:
+            chap_issues.append({"type":"chapter_rhythm_missing","severity":"warning","file":chap_file,"detail":"Missing 'chapter_level_rhythm' (Expectation/Disruption/PartialResolution)","recommendation":"Set 'chapter_level_rhythm' to guide chapter endings"})
+        else:
+            if clr not in CHAPTER_RHYTHMS_ALLOWED:
+                chap_issues.append({"type":"chapter_rhythm_invalid","severity":"warning","file":chap_file,"detail":f"Invalid chapter_level_rhythm '{clr}'. Allowed: {CHAPTER_RHYTHMS_ALLOWED}","recommendation":f"Use one of: {CHAPTER_RHYTHMS_ALLOWED}"})
+        # Part-level scene rhythm recommendations: suggest adding scene_rhythm if part is long
+        for p in parts:
+            path = os.path.join(ROOT, p.get('file'))
+            wc, _ = word_count_file(path)
+            # recommend scene_rhythm if long
+            if wc and wc > 800 and not p.get('scene_rhythm'):
+                chap_issues.append({"type":"scene_rhythm_missing","severity":"warning","file":chap_file,"detail":f"Part {p.get('id')} is long ({wc} words); consider adding 'scene_rhythm' (Tension/Action/Aftermath)","recommendation":"Add 'scene_rhythm' to part metadata to clarify pacing"})
+            # validate scene_rhythm value if present
+            if p.get('scene_rhythm') and p.get('scene_rhythm') not in SCENE_RHYTHMS_ALLOWED:
+                chap_issues.append({"type":"scene_rhythm_invalid","severity":"warning","file":chap_file,"detail":f"Part {p.get('id')} has invalid scene_rhythm '{p.get('scene_rhythm')}'. Allowed: {SCENE_RHYTHMS_ALLOWED}","recommendation":f"Use one of: {SCENE_RHYTHMS_ALLOWED}"})
+
+        # midpoint inversion heuristic: check roughly middle chapter for tonal inversion
+        total_chapters = config.get('chapters_per_book')
+        if total_chapters and ch_num:
+            mid = math.ceil(total_chapters / 2)
+            if ch_num == mid:
+                # if expected_phase exists, make sure a tonal inversion is declared or chapter shows 'Disruption' or 'Dread' style tone
+                if clr and clr != "Disruption":
+                    chap_issues.append({"type":"midpoint_tone_check","severity":"warning","file":chap_file,"detail":"Midpoint chapter not marked as a tonal inversion (expected 'Disruption').","recommendation":"Review midpoint chapter for tonal inversion (optimism → constraint) and add 'chapter_level_rhythm':'Disruption' or a note in chapter metadata."})
+
         # assemble continuity report for chapter
         continuity = {
             "id": f"continuity-{chap_id}-{now}",
@@ -402,11 +538,137 @@ def run_full_check():
             "summary": f"{len([i for i in chap_issues if i.get('severity')=='error'])} errors, {len([i for i in chap_issues if i.get('severity')=='warning'])} warnings",
             "last_updated": now
         }
-        outpath = os.path.join(CONTINUITY_DIR, f"continuity-{chap_id}-{now}.jsonc")
+        outpath = os.path.join(CONTINUITY_DIR, f"continuity-{chap_id}-{safe_now}.jsonc")
         with open(outpath, "w", encoding="utf-8") as f:
             json.dump(continuity, f, indent=2)
         infos.append({"file":chap_file, "continuity_report": outpath, "issues_found": len(chap_issues)})
         report_issues.extend(chap_issues)
+
+    # --- Act-level validations ---
+    try:
+        config_acts = load_jsonc(CONFIG_FILE).get('acts_per_book', None)
+    except Exception:
+        config_acts = None
+    if acts:
+        # check contiguity & chapter existence per act
+        covered = set()
+        for aid, (aobj, apath) in acts.items():
+            a_chaps = aobj.get('chapters', [])
+            # validate chapters exist
+            for c in a_chaps:
+                # accept either numeric (int) chapter numbers or full chapter ids like 'chap-01'
+                if isinstance(c, int):
+                    cid = f"chap-{str(c).zfill(2)}"
+                elif isinstance(c, str) and c.startswith('chap-'):
+                    cid = c
+                else:
+                    # unsupported format; create warning and skip
+                    report_issues.append({"type":"act_invalid_chapter_id","severity":"warning","file":apath,"detail":f"Act '{aid}' contains unsupported chapter identifier: {c}","recommendation":"Use 'chap-XX' strings or integers for chapter numbers in act files"})
+                    cid = None
+                if cid:
+                    if cid not in chaps:
+                        report_issues.append({"type":"act_missing_chapter","severity":"warning","file":apath,"detail":f"Act '{aid}' references chapter id {cid} which does not exist as a chapter file","recommendation":"Fix chapter id in act or add missing chapter file"})
+                    else:
+                        covered.add(cid)
+            # contiguity check (normalize chapter ids to numbers where possible)
+            if a_chaps:
+                numeric_chaps = []
+                for c in a_chaps:
+                    if isinstance(c, int):
+                        numeric_chaps.append(c)
+                    elif isinstance(c, str) and c.startswith('chap-'):
+                        num = chapter_number(c)
+                        if num:
+                            numeric_chaps.append(num)
+                if numeric_chaps:
+                    sorted_nums = sorted(numeric_chaps)
+                    if sorted_nums != list(range(sorted_nums[0], sorted_nums[-1] + 1)):
+                        report_issues.append({"type":"act_noncontiguous","severity":"warning","file":apath,"detail":f"Act '{aid}' chapters are non-contiguous (numeric view): {numeric_chaps}","recommendation":"Prefer contiguous chapter ranges for acts or add notes documenting the split"})
+                else:
+                    # couldn't normalize to numbers - still warn if many entries
+                    if len(a_chaps) > 1:
+                        report_issues.append({"type":"act_noncontiguous","severity":"warning","file":apath,"detail":f"Act '{aid}' chapters appear non-numeric or cannot be checked for contiguity: {a_chaps}","recommendation":"Use 'chap-XX' ids or numeric chapter numbers for act definitions"})
+            # act-level tone checks
+            if 'macro_phase_segment' not in aobj:
+                report_issues.append({"type":"act_tone_missing","severity":"warning","file":apath,"detail":f"Act '{aid}' missing 'macro_phase_segment' tonal metadata","recommendation":"Add 'macro_phase_segment' to describe the macro phases covered by this act"})
+            else:
+                # validate segment vs expected phases for its chapter range
+                expected_phases_in_act = []
+                for c in a_chaps:
+                    cnum = c if isinstance(c, int) else chapter_number(c) if isinstance(c, str) else None
+                    phase = None
+                    if cnum:
+                        phase = get_expected_macro_phase(cnum, load_jsonc(CONFIG_FILE).get('chapters_per_book', None), load_jsonc(CONFIG_FILE))
+                    if phase and phase not in expected_phases_in_act:
+                        expected_phases_in_act.append(phase)
+                seg = aobj.get('macro_phase_segment', [])
+                # normalize to list
+                seg_list = seg if isinstance(seg, list) else [seg]
+                # validate seg items are canonical macro phases
+                for item in seg_list:
+                    if item not in MACRO_PHASES:
+                        report_issues.append({"type":"act_macro_phase_invalid","severity":"warning","file":apath,"detail":f"Act '{aid}' includes macro_phase_segment item '{item}' not in canonical macro_phases: {MACRO_PHASES}","recommendation":"Use canonical macro_phases from templates/tone_schema.jsonc"})
+                # warn if seg_list shares no overlap with expected_phases_in_act
+                if expected_phases_in_act and not set(seg_list).intersection(set(expected_phases_in_act)):
+                    sev = severity_for_policy(acts_policy.get('act_tone_mismatch_policy', 'warning'))
+                    report_issues.append({"type":"act_tone_mismatch","severity":sev,"file":apath,"detail":f"Act '{aid}' macro_phase_segment {seg_list} does not overlap expected phases for its chapters {expected_phases_in_act}","recommendation":"Review act tone or adjust chapter allocations"})
+                # validate act_level_rhythm if present
+                alr = aobj.get('act_level_rhythm')
+                if alr and alr not in ACT_RHYTHMS_ALLOWED:
+                    report_issues.append({"type":"act_rhythm_invalid","severity":"warning","file":apath,"detail":f"Act '{aid}' act_level_rhythm '{alr}' not in allowed: {ACT_RHYTHMS_ALLOWED}","recommendation":f"Use one of: {ACT_RHYTHMS_ALLOWED}"})
+        # Act distribution checks: compare expected distribution against actual act files
+        try:
+            raw_dist = load_jsonc(CONFIG_FILE).get('act_distribution', None)
+            baseline_included_cfg = bool(load_jsonc(CONFIG_FILE).get('baseline_act_included', True))
+            if raw_dist:
+                if isinstance(raw_dist, dict):
+                    distribution = [(k, int(v)) for k, v in raw_dist.items()]
+                elif isinstance(raw_dist, list):
+                    distribution = [(str(k), int(v)) for k, v in raw_dist]
+                else:
+                    distribution = DEFAULT_ACT_DISTRIBUTION
+            else:
+                # default behavior: use DEFAULT_ACT_DISTRIBUTION when acts_per_book == 7
+                if load_jsonc(CONFIG_FILE).get('acts_per_book', None) == 7:
+                    distribution = DEFAULT_ACT_DISTRIBUTION
+                else:
+                    distribution = []
+            if not baseline_included_cfg:
+                distribution = [pair for pair in distribution if pair[0] != 'act-00']
+
+            if distribution:
+                total_pct = sum(pct for _, pct in distribution) or 100
+                expected_raw = [(aid, int((pct * load_jsonc(CONFIG_FILE).get('chapters_per_book', 0)) / total_pct)) for aid, pct in distribution]
+                allocated = sum(cnt for _, cnt in expected_raw)
+                rem = load_jsonc(CONFIG_FILE).get('chapters_per_book', 0) - allocated
+                sorted_by_pct = sorted(distribution, key=lambda x: x[1], reverse=True)
+                ridx = 0
+                while rem > 0 and sorted_by_pct:
+                    aid = sorted_by_pct[ridx % len(sorted_by_pct)][0]
+                    for i, (a_id, c) in enumerate(expected_raw):
+                        if a_id == aid:
+                            expected_raw[i] = (a_id, c + 1)
+                            rem -= 1
+                            break
+                    ridx += 1
+
+                for aid, expected_count in expected_raw:
+                    if aid not in acts:
+                        sev = severity_for_policy(acts_policy.get('missing_act_policy', 'warning'))
+                        report_issues.append({"type":"act_missing_expected","severity":sev,"file":CONFIG_FILE,"detail":f"Expected act '{aid}' not found as an act file per act_distribution","recommendation":"Add act file or adjust act_distribution in story_config.jsonc"})
+                    else:
+                        actual_count = len(acts[aid][0].get('chapters', []))
+                        if abs(actual_count - expected_count) > 1:
+                            sev = severity_for_policy(acts_policy.get('missing_act_policy', 'warning'))
+                            report_issues.append({"type":"act_coverage_mismatch","severity":sev,"file":acts[aid][1],"detail":f"Act '{aid}' has {actual_count} chapters but expected approx {expected_count} based on distribution","recommendation":"Adjust chapters listed in act file or update act_distribution in story_config.jsonc"})
+        except Exception:
+            pass
+
+        # chapters not covered by any act
+        for cid in chaps.keys():
+            if cid not in covered:
+                report_issues.append({"type":"chapter_not_in_act","severity":"warning","file":chaps[cid][1],"detail":f"Chapter '{cid}' not listed in any act file","recommendation":"Add chapter to an act or mark as unassigned intentionally"})
+
     # aggregated checks report
     errors = [i for i in report_issues if i.get("severity")=="error"]
     warnings = [i for i in report_issues if i.get("severity")=="warning"]
@@ -416,9 +678,9 @@ def run_full_check():
         "scope": "full-check",
         "issues": report_issues,
         "summary": {"errors": len(errors), "warnings": len(warnings), "infos": len(infos)},
-        "artifacts": { "continuity_reports": [os.path.join(CONTINUITY_DIR,f) for f in os.listdir(CONTINUITY_DIR) if f.endswith(f"-{now}.jsonc")] }
+        "artifacts": { "continuity_reports": [os.path.join(CONTINUITY_DIR,f) for f in os.listdir(CONTINUITY_DIR) if f.endswith(f"-{safe_now}.jsonc")] }
     }
-    outpath = os.path.join(CONTINUITY_DIR, f"checks-report-{now}.jsonc")
+    outpath = os.path.join(CONTINUITY_DIR, f"checks-report-{safe_now}.jsonc")
     with open(outpath, "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2)
 
@@ -661,7 +923,7 @@ def main():
                     rewrite_results = run_iterative_rewrites(config, chaps, assessments_map, auto_apply=args.auto_rewrite)
                     # write a rewrite report into continuity dir
                     now = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-                    rpath = os.path.join(CONTINUITY_DIR, f"rewrite-report-{now}.jsonc")
+                    rpath = os.path.join(CONTINUITY_DIR, f"rewrite-report-{safe_now}.jsonc")
                     with open(rpath, "w", encoding="utf-8") as rf:
                         json.dump({"generated_at": now, "results": rewrite_results}, rf, indent=2)
                     print(f"Rewrite report written to {rpath}")

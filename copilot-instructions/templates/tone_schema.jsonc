@@ -1,0 +1,39 @@
+{
+  "id": "tone-schema",
+  "version": "1.0",
+  "description": "Canonical tonal vocabulary and enums derived from Tone.md. Use these terms in chapter / act metadata to enable consistent planning and automated checks.",
+
+  // Macro rhythm phases (book-level emotional waveform)
+  "macro_phases": [
+    "Hope",
+    "Unease",
+    "Relief",
+    "Threat",
+    "Triumph",
+    "Loss",
+    "Resolve",
+    "Catastrophe",
+    "Meaning"
+  ],
+
+  // Chapter-level rhythm options (short arcs / chapter endings)
+  "chapter_level_rhythms": ["Expectation", "Disruption", "PartialResolution"],
+
+  // Scene-level rhythmic roles (page/scene pacing)
+  "scene_rhythms": ["Tension", "Action", "Aftermath"],
+
+  // Act-level rhythm labels (high-level act shapes)
+  "act_level_rhythms": ["Setup", "Escalation", "Crisis", "Resolution", "Coda"],
+
+  // Character-internal progression states (internal tonal loop)
+  "character_internal_states": ["Self-belief", "Self-doubt", "Rationalization", "Self-betrayal", "Reckoning"],
+
+  // Thematic stages (how themes evolve across the book)
+  "thematic_stages": ["Stated", "ArguedAgainst", "Tested", "Redefined"],
+
+  // Guidance snippets (human readable notes derived from Tone.md)
+  "guidance": {
+    "midpoint": "Midpoint is a tonal inversion: optimism → constraint; prefer marking midpoint chapter with 'Disruption' or similar metadata.",
+    "notes": "Use 'macro_phases' for book-level mapping; map chapters into phases for planning. Use 'chapter_level_rhythms' for chapter endings and 'scene_rhythms' for part/scene pacing. Acts should declare 'macro_phase_segment' as a subset of 'macro_phases'."
+  }
+}

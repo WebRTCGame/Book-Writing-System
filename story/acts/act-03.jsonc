@@ -1,0 +1,23 @@
+{
+  "id": "act-03",
+  "title": "Act III — Crisis & Meaning",
+  "sequence": 3,
+  "chapters": ["chap-04","chap-05"],
+  "dominant_tone": "confidence",
+  "macro_phase_segment": ["Triumph","Resolve"],
+  "act_level_rhythm": "Escalation",
+  "summary": "Success builds momentum, but irreversible consequences begin to form.",
+  "revision_history": [
+    { "date": "2025-12-18T14:33:25Z", "author": "copilot", "note": "Normalized act_level_rhythm to canonical enum 'Escalation'" }],
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Adjusted chapters to Tone.md distribution" }],
+  "estimated_word_count": 9000,
+  "actual_word_count": 0,
+  "status": "draft",
+  "first_written": "2025-12-18T00:00:00Z",
+  "last_updated": "2025-12-18T00:00:00Z",
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Created act mapping from plan" },
+    { "date": "2025-12-18T13:46:00Z", "author": "copilot", "note": "Auto-applied chapter annotations for chapters 9-12 (planner auto-apply)" }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "id": "act-01",
+  "title": "Act I — Discovery & Setup",
+  "sequence": 1,
+  "chapters": ["chap-01"],
+  "dominant_tone": "curiosity",
+  "macro_phase_segment": ["Hope"],
+  "act_level_rhythm": "Setup",
+  "summary": "Introduce Aya, the signal, and the first discoveries; set stakes and present the inciting mysteries.",
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Adjusted chapters to Tone.md distribution" }],
+  "estimated_word_count": 8000,
+  "actual_word_count": 0,
+  "status": "draft",
+  "first_written": "2025-12-18T00:00:00Z",
+  "last_updated": "2025-12-18T00:00:00Z",
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Created act mapping from plan" },
+    { "date": "2025-12-18T13:46:00Z", "author": "copilot", "note": "Auto-applied chapter annotations for chapters 1-4 (planner auto-apply)" }
+  ]
+}

@@ -1,0 +1,190 @@
+{
+  "id": "tone-plan-2025-12-18T13:36:24Z",
+  "generated_at": "2025-12-18T13:36:24Z",
+  "chapters_per_book": 12,
+  "acts_per_book": 7,
+  "macro_rhythm_sequence": [
+    "Hope",
+    "Unease",
+    "Relief",
+    "Threat",
+    "Triumph",
+    "Loss",
+    "Resolve",
+    "Catastrophe",
+    "Meaning"
+  ],
+  "rhythm_cycles": 2,
+  "mapping": [
+    {
+      "chapter": 1,
+      "expected_macro_phase": "Hope",
+      "suggested_chapter_level_rhythm": "Expectation",
+      "act": "act-01"
+    },
+    {
+      "chapter": 2,
+      "expected_macro_phase": "Unease",
+      "suggested_chapter_level_rhythm": "Expectation",
+      "act": "act-02"
+    },
+    {
+      "chapter": 3,
+      "expected_macro_phase": "Threat",
+      "suggested_chapter_level_rhythm": "Disruption",
+      "act": "act-02"
+    },
+    {
+      "chapter": 4,
+      "expected_macro_phase": "Triumph",
+      "suggested_chapter_level_rhythm": "Disruption",
+      "act": "act-03"
+    },
+    {
+      "chapter": 5,
+      "expected_macro_phase": "Resolve",
+      "suggested_chapter_level_rhythm": "PartialResolution",
+      "act": "act-03"
+    },
+    {
+      "chapter": 6,
+      "expected_macro_phase": "Catastrophe",
+      "suggested_chapter_level_rhythm": "PartialResolution",
+      "midpoint": true,
+      "note": "Tonally: midpoint should contain inversion (optimism\u2192constraint); consider setting chapter_level_rhythm to 'Disruption' and marking 'macro_phase' accordingly.",
+      "act": "act-04"
+    },
+    {
+      "chapter": 7,
+      "expected_macro_phase": "Hope",
+      "suggested_chapter_level_rhythm": "Expectation",
+      "act": "act-05"
+    },
+    {
+      "chapter": 8,
+      "expected_macro_phase": "Unease",
+      "suggested_chapter_level_rhythm": "Expectation",
+      "act": "act-05"
+    },
+    {
+      "chapter": 9,
+      "expected_macro_phase": "Threat",
+      "suggested_chapter_level_rhythm": "Disruption",
+      "act": "act-05"
+    },
+    {
+      "chapter": 10,
+      "expected_macro_phase": "Triumph",
+      "suggested_chapter_level_rhythm": "Disruption",
+      "act": "act-06"
+    },
+    {
+      "chapter": 11,
+      "expected_macro_phase": "Resolve",
+      "suggested_chapter_level_rhythm": "PartialResolution",
+      "act": "act-06"
+    },
+    {
+      "chapter": 12,
+      "expected_macro_phase": "Catastrophe",
+      "suggested_chapter_level_rhythm": "PartialResolution",
+      "act": "act-07"
+    }
+  ],
+  "act_plan_summary": [
+    {
+      "act": 1,
+      "id": "act-01",
+      "sequence": 1,
+      "chapters": [
+        1
+      ],
+      "expected_macro_phases": [
+        "Hope"
+      ],
+      "suggested_act_level_rhythm": "Setup"
+    },
+    {
+      "act": 2,
+      "id": "act-02",
+      "sequence": 2,
+      "chapters": [
+        2,
+        3
+      ],
+      "expected_macro_phases": [
+        "Unease",
+        "Threat"
+      ],
+      "suggested_act_level_rhythm": "Escalation"
+    },
+    {
+      "act": 3,
+      "id": "act-03",
+      "sequence": 3,
+      "chapters": [
+        4,
+        5
+      ],
+      "expected_macro_phases": [
+        "Triumph",
+        "Resolve"
+      ],
+      "suggested_act_level_rhythm": "Escalation"
+    },
+    {
+      "act": 4,
+      "id": "act-04",
+      "sequence": 4,
+      "chapters": [
+        6
+      ],
+      "expected_macro_phases": [
+        "Catastrophe"
+      ],
+      "suggested_act_level_rhythm": "Lock-in"
+    },
+    {
+      "act": 5,
+      "id": "act-05",
+      "sequence": 5,
+      "chapters": [
+        7,
+        8,
+        9
+      ],
+      "expected_macro_phases": [
+        "Hope",
+        "Unease",
+        "Threat"
+      ],
+      "suggested_act_level_rhythm": "Pressure"
+    },
+    {
+      "act": 6,
+      "id": "act-06",
+      "sequence": 6,
+      "chapters": [
+        10,
+        11
+      ],
+      "expected_macro_phases": [
+        "Triumph",
+        "Resolve"
+      ],
+      "suggested_act_level_rhythm": "Collapse"
+    },
+    {
+      "act": 7,
+      "id": "act-07",
+      "sequence": 7,
+      "chapters": [
+        12
+      ],
+      "expected_macro_phases": [
+        "Catastrophe"
+      ],
+      "suggested_act_level_rhythm": "Resolution"
+    }
+  ]
+}

@@ -14,6 +14,8 @@
       "plot_lines": ["beacon","investigation"],
       "summary": "Retrieve observatory frames and detect a prime-interval beacon; covertly copy evidence while avoiding automated monitors.",
       "beats": ["beat-1", "beat-2"],
+      // Optional: scene_rhythm helps guide pacing for this part (e.g., "Tension", "Action", "Aftermath")
+      "scene_rhythm": "Tension",
       "estimated_word_count": 350,
       "actual_word_count": 0,
       "status": "draft",
@@ -32,6 +34,14 @@
     { "id": "beat-2", "summary": "Argument with dock worker; hint of alliance" }
   ],
   "tags": ["investigation", "night"],
+  // Tonal metadata (optional) — recommended to help planning and automated checks
+  // "dominant_tone": string, e.g. "curiosity", "dread", "hope", "resolve"
+  "dominant_tone": "curiosity",
+  // macro_phase should be one of the macro rhythm phases (see Tone.md):
+  // e.g. "Hope", "Unease", "Relief", "Threat", "Triumph", "Loss", "Resolve", "Catastrophe", "Meaning"
+  "macro_phase": "Hope",
+  // chapter_level_rhythm: one of "Expectation", "Disruption", "PartialResolution"
+  "chapter_level_rhythm": "Expectation",
   "first_written": "2025-12-16T14:30:00Z",
   "last_updated": "2025-12-16T14:30:00Z",
   "revision_history": [

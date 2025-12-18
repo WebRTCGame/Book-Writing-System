@@ -7,6 +7,18 @@
   "is_series": false,
   "books": 1,
   "chapters_per_book": 12,
+  "acts_per_book": 7, // default main acts (Act I..Act VII) per Tone.md
+  "baseline_act_included": true, // include Act 0 baseline by default (optional)
+  "act_distribution": {
+    "act-00": 5,
+    "act-01": 10,
+    "act-02": 15,
+    "act-03": 15,
+    "act-04": 10,
+    "act-05": 20,
+    "act-06": 15,
+    "act-07": 10
+  },
   "plot_lines": 2,
   "expected_characters_min": 3,
   "expected_characters_max": 8,
@@ -18,6 +30,15 @@
   "reading_level": "grade_10",
   "default_pov": "third-limited",
   "tone": "tense, atmospheric",
+  // Macro rhythm configuration — used by automated checks and planning tools
+  // Default sequence taken from Tone.md; can be customized per story
+  "macro_rhythm_sequence": ["Hope","Unease","Relief","Threat","Triumph","Loss","Resolve","Catastrophe","Meaning"],
+  // Number of repeated macro cycles to plan for across the book (integer)
+  "rhythm_cycles": 2,
+  // Act rhythm mapping rules: how many macro phases per act, labels, and defaults
+  "act_rhythm_mapping_rules": { "default_segments_per_act": 3, "labels": ["Setup","Escalation","Crisis","Resolution"] },
+  // Reference to the guidance file for tone/rhythm (human-readable)
+  "tone_guidelines_file": "./Tone.md",
   "plot_file": "story/plot.md",
   "update_rules": {
     "on_chapter_create": "append chapter metadata to plot_file and add human summary (20–70 words); update last_updated and revision_history",
@@ -42,5 +63,14 @@
   "auto_apply_rewrites": true,
   "max_rewrite_iterations": 3,
   "rewrite_word_change_max_percent": 20,
-  "rewrite_guidance": "Tighten sentences, increase tension in opening beats, preserve POV and facts; do not alter character core attributes."
+  "rewrite_guidance": "Tighten sentences, increase tension in opening beats, preserve POV and facts; do not alter character core attributes.",
+  "acts": {
+    "require_act_files": true,
+    "require_act_metadata": false,
+    "missing_act_policy": "warning",
+    "act_tone_mismatch_policy": "warning",
+    "missing_chapter_act_policy": "warning",
+    "auto_assign_chapters": true,
+    "auto_apply_annotations": true
+  }
 }

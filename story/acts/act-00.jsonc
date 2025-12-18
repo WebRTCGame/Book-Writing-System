@@ -1,0 +1,17 @@
+{
+  "id": "act-00",
+  "title": "Baseline Equilibrium",
+  "sequence": 0,
+  "chapters": [],
+  "dominant_tone": "Stability, normalcy",
+  "macro_phase_segment": ["Hope"],
+  "act_level_rhythm": "Setup",
+  "summary": "Sets the world and makes the cost of normal life visible.",
+  "revision_history": [
+    { "date": "2025-12-18T14:33:25Z", "author": "copilot", "note": "Adjusted act_level_rhythm to canonical value 'Setup'" }],
+  "estimated_word_count": 0,
+  "actual_word_count": 0,
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Created act skeleton per Tone.md distribution" }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "act-05",
+  "title": "Constriction",
+  "sequence": 5,
+  "chapters": [7, 8, 9],
+  "dominant_tone": "Anxiety, moral stress",
+  "macro_phase_segment": ["Hope","Unease","Threat"],
+  "act_level_rhythm": "Escalation",
+  "summary": "Options narrow and avoidance becomes impossible; stakes tighten.",
+  "revision_history": [
+    { "date": "2025-12-18T14:33:25Z", "author": "copilot", "note": "Normalized act_level_rhythm to canonical enum 'Escalation'" }],
+  "estimated_word_count": 0,
+  "actual_word_count": 0,
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Created act file per Tone.md distribution" }
+  ]
+}

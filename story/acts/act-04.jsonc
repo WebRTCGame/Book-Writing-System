@@ -1,0 +1,17 @@
+{
+  "id": "act-04",
+  "title": "Tonal Inversion (Midpoint)",
+  "sequence": 4,
+  "chapters": [6],
+  "dominant_tone": "Victory-tinged dread",
+  "macro_phase_segment": ["Catastrophe"],
+  "act_level_rhythm": "Crisis",
+  "summary": "Tonal inversion: victory becomes the lock that prevents escape; protagonist loses an exit path.",
+  "revision_history": [
+    { "date": "2025-12-18T14:33:25Z", "author": "copilot", "note": "Normalized act_level_rhythm to canonical enum 'Crisis'" }],
+  "estimated_word_count": 0,
+  "actual_word_count": 0,
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Created act file per Tone.md distribution" }
+  ]
+}

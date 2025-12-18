@@ -1,0 +1,21 @@
+{
+  "id": "act-02",
+  "title": "Act II — Escalation & Constraint",
+  "sequence": 2,
+  "chapters": ["chap-02","chap-03"],
+  "dominant_tone": "adaptation",
+  "macro_phase_segment": ["Unease","Threat"],
+  "act_level_rhythm": "Escalation",
+  "summary": "Characters adapt and attempt to regain control; cautious hope turns to commitment.",
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Adjusted chapters to Tone.md distribution" }],
+  "estimated_word_count": 10000,
+  "actual_word_count": 0,
+  "status": "draft",
+  "first_written": "2025-12-18T00:00:00Z",
+  "last_updated": "2025-12-18T00:00:00Z",
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Created act mapping from plan" },
+    { "date": "2025-12-18T13:46:00Z", "author": "copilot", "note": "Auto-applied chapter annotations for chapters 5-8 (planner auto-apply)" }
+  ]
+}

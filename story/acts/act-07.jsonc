@@ -1,0 +1,15 @@
+{
+  "id": "act-07",
+  "title": "Resolution",
+  "sequence": 7,
+  "chapters": [12],
+  "dominant_tone": "Earned calm, bittersweet clarity",
+  "macro_phase_segment": ["Catastrophe"],
+  "act_level_rhythm": "Resolution",
+  "summary": "A new equilibrium replaces the old; meaning is redefined.",
+  "estimated_word_count": 0,
+  "actual_word_count": 0,
+  "revision_history": [
+    { "date": "2025-12-18T00:00:00Z", "author": "copilot", "note": "Created act file per Tone.md distribution" }
+  ]
+}

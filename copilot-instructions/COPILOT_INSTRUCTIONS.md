@@ -54,6 +54,30 @@ Request a "continuity report" to surface:
 - Unlinked items (objects or clues not referenced by chapters).
 Report format: continuity_report.jsonc (see templates).
 
+### Tone & Rhythm integration (new)
+- Purpose: Use the tonal model in Tone.md to plan and validate how emotional "waves" and chapter-level rhythms distribute across the book.
+- Canonical schema & guidance: `copilot-instructions/templates/tone_schema.jsonc` — defines allowed `macro_phases`, `chapter_level_rhythms`, `scene_rhythms`, `act_level_rhythms`, `character_internal_states`, and `thematic_stages`. Use this file as the authoritative enum source for checks and planners.
+- New metadata fields (chapter level): `dominant_tone` (string), `macro_phase` (string from a story-wide `macro_rhythm_sequence`), `chapter_level_rhythm` (one of `Expectation`, `Disruption`, `PartialResolution`). These fields are optional but **strongly recommended** for planning and automated checks.
+- Story configuration: `macro_rhythm_sequence` (ordered array of macro phases), `rhythm_cycles` (integer — how many times the macro sequence repeats in the book), `acts_per_book`/`acts` (act-level settings), and `tone_guidelines_file` (path to Tone.md or other guidance).
+- Planner & tools:
+  - Use `tools/plan_rhythm.py` to compute an overall mapping of chapters → macro phases and to generate `story/tone_plan.jsonc` and `story/act_plan.jsonc`.
+  - The planner supports `--annotate-suggestions` (writes a dry-run suggestions file under `story/suggestions/suggested-annotations-<ts>.jsonc`) and `--apply` (applies suggested annotations in-place). This repository is configured to **auto-apply** suggestions by default (`story_config.acts.auto_apply_annotations: true`) — when `--apply` runs it will write an `apply-results-<ts>.jsonc` artifact in `story/suggestions/` and append `revision_history` entries to affected files.
+- Planning rules:
+  - Use `chapters_per_book` to compute an even distribution of macro phases across the book when `macro_rhythm_sequence` and `rhythm_cycles` are present. Each chapter is mapped to a macro phase by position; the midpoint chapter is expected to contain a tonal inversion (optimism → constraint / loss) — flag it if `macro_phase` is not set or disagrees with expected placement.
+  - Each chapter should declare a `chapter_level_rhythm` to help the assistant plan endings that avoid emotional zeros: prefer chapter endings with a question, recontextualization, shift of power, or moral discomfort.
+  - Parts may include `scene_rhythm` (e.g., `Tension`, `Action`, `Aftermath`) to guide pacing at the page/scene level; the planner and checks will **suggest** adding `scene_rhythm` to long parts and may auto-apply those suggestions when `auto_apply_annotations` is enabled.
+- Checks to add to CI (behavioral):
+  - Presence: warn if `dominant_tone` / `macro_phase` / `chapter_level_rhythm` are missing (severity configurable via `story_config` / policies).
+  - Distribution: compute expected macro phase per chapter based on `macro_rhythm_sequence`, `rhythm_cycles`, and `chapters_per_book`; warn if a chapter's `macro_phase` conflicts strongly with expected phase (run_checks validates values against `tone_schema.jsonc` and will error on unknown enums).
+  - Midpoint inversion check: verify the chapter near the middle of the book shows tonal inversion traits (e.g., shift from lack → consequences); warn if missing.
+  - Granularity: recommend adding `scene_rhythm` to parts when parts exceed 6–10 pages or when pacing feels uneven; suggestions are included in planner output and may be applied automatically if allowed.
+- How the assistant should use these fields:
+  - When generating outlines or chapter suggestions, set or propose `dominant_tone`, `chapter_level_rhythm`, and `macro_phase` entries consistent with the planned rhythm; include short quotes from `tone_guidelines_file` when relevant.
+  - When running full checks, include tone/rhythm notes in `continuity_report.jsonc` and the aggregated `checks_report.jsonc`. Severity for tone/act issues is configurable via `story_config` (see Acts policy) and mapped by `tools/act_policy.py`.
+- Documentation & human review: use `tone_guidelines_file` (e.g., `Tone.md`) as the canonical guidance for writers; the assistant should quote the relevant line when making a recommendation (short quote + citation path).
+
+
+
 Automated checks (recommended):
 - JSON schema validation for all logs.
 - ID uniqueness across logs.
@@ -82,6 +106,7 @@ Automated checks (recommended):
 - Do NOT assume or require hosted CI services (e.g., GitHub Actions) or any paid tooling. Use local scripts, pre-commit hooks, or self-hosted runners that do not incur paid service costs.
 - Recommended: run checks locally or via self-hosted automation that you control. The checks described in "Checks, validation & CI" should be runnable offline or on free infrastructure.
 - When documenting external queries, ensure every retrieval includes attribution and retrieval_date and is cached for reproducibility.
+- Unit tests covering the planner, act policy mapping, and auto-apply flows are available under `tests/` and can be executed with `pytest` to validate behavior and prevent regressions.
 
 ## Best practices
 - Be explicit about POV, tense, voice, and length in every generation prompt.
@@ -93,7 +118,8 @@ Automated checks (recommended):
 - "Create character using character_schema.jsonc. Provide one-paragraph sample scene separate from the JSON."
 - "Update char-xxx: set current_state to 'interrogating captain' and add tag 'on-mission'. Return updated JSON only."
 - "Generate chap-03 outline (500–800 words, present tense, Lena POV); return chapter_schema and outline markdown."
-
+- "Plan macro rhythm across the book using Tone.md: given story_config.chapters_per_book and rhythm_cycles, return a table mapping chapter numbers to expected macro_phase and suggested chapter_level_rhythm (Expectation/Disruption/PartialResolution)."
+- "Run the planning script (python tools/plan_rhythm.py) to generate `story/tone_plan.jsonc` (and `story/act_plan.jsonc`) and optionally annotate chapters with the suggested `macro_phase` and `chapter_level_rhythm` values; use `--annotate-suggestions` for a dry run and `--apply` to apply changes (artifacts written to `story/suggestions/`)."
 ## Plot file (story/plot.md) and continuous updates
 - Purpose: maintain a single, up-to-date synopsis with short chapter summaries, an arc summary, and tracked open threads for planning and continuity.
 - Location & format: story/plot.md (Markdown). The file must begin with a machine-readable JSONC metadata block (fenced ```jsonc) containing:
@@ -146,6 +172,64 @@ Automated checks (recommended):
 - Prompt pattern (example):
   - "Split chap-01 into 2 parts across plot-lines 'beacon' and 'watch'. Create files chap-01_part-01-beacon.md and chap-01_part-02-watch.md, each 300–600 words. Return parts metadata (JSON) and short 30–50 word summaries."
 
+## Acts & high-level structure
+
+Purpose
+- Model the book as a sequence of acts following the Tone.md act-level architecture (default main acts: 7 — Act I..Act VII). An optional **Act 0 – Baseline** may be included via `story_config.baseline_act_included` to capture the opening equilibrium before the intrusion.
+
+Act distribution & percentages
+- By default the repository uses a Tone.md aligned distribution (Act 0..Act VII):
+  - `act-00`: 5% (Baseline Equilibrium)
+  - `act-01`: 10% (Intrusion)
+  - `act-02`: 15% (Orientation)
+  - `act-03`: 15% (Expansion)
+  - `act-04`: 10% (Tonal Inversion / Midpoint)
+  - `act-05`: 20% (Constriction)
+  - `act-06`: 15% (Collapse)
+  - `act-07`: 10% (Resolution)
+- You can override this via `story_config.act_distribution` (an ordered mapping of `{"act-id": percent}`). When `act_distribution` is not provided the planner will use the default Tone.md distribution when `acts_per_book` is 7 and `baseline_act_included` is true; otherwise it will evenly split chapters across `acts_per_book`.
+- Example `story_config` snippet:
+
+  ```jsonc
+  "acts_per_book": 7,
+  "baseline_act_included": true,
+  "act_distribution": {
+    "act-00": 5,
+    "act-01": 10,
+    "act-02": 15,
+    "act-03": 15,
+    "act-04": 10,
+    "act-05": 20,
+    "act-06": 15,
+    "act-07": 10
+  }
+  ```
+
+- The planner (`tools/plan_rhythm.py`) will compute per-act chapter counts using distribution percentages and write `story/act_plan.jsonc` and `story/tone_plan.jsonc`.
+
+Guidance
+- Each act should be represented by an `acts/*.jsonc` file following the `copilot-instructions/templates/acts_schema.jsonc` template and include: `id`, `title`, `sequence`, `chapters` (array of chapter ids, contiguous preferred), `dominant_tone`, `macro_phase_segment`, `act_level_rhythm`, `summary`, `estimated_word_count`, `actual_word_count`, and `revision_history`.
+- Acts map higher-level macro-rhythm segments to contiguous chapters; e.g., Act I covers early "Hope→Unease" segments, Act II covers "Threat→Loss", and Act III covers "Resolve→Meaning" (customizable via `story_config.act_rhythm_mapping_rules`).
+- Canonical act-level rhythm enums (used by checks & planner): `Setup`, `Escalation`, `Crisis`, `Resolution`, `Coda`. Prefer using these enums for `act_level_rhythm`; if you prefer custom labels (e.g., 'Lock-in', 'Pressure'), map them to the canonical set in the act file's `notes` or use `macro_phase_segment` for detailed tone guidance.
+- Prefer contiguous chapter ranges per act to simplify automated checks and planning; if non-contiguous acts are required, mark them explicitly and document reasons in the act `notes`.
+
+Checks & automation
+- Presence: warn if `acts/*.jsonc` files are missing or if `acts_per_book` in `story_config.jsonc` is set but no act files exist.
+- Coverage: ensure every chapter is assigned to exactly one act unless explicitly marked `unassigned:true` (warn if a chapter lacks an act_id or is assigned to multiple acts).
+- Contiguity: warn when chapters within an act are non-contiguous.
+- Act-level tone: validate `act.macro_phase_segment` against `story_config.macro_rhythm_sequence` and warn when an act's declared segment is inconsistent with expected macro phases for its chapter range.
+- Policy-driven severity: the severity for act-related issues (presence, coverage, contiguity, and tone mismatch) is configurable in `story_config.acts.policy` and mapped by `tools/act_policy.py`; CI or local checks will honor those severities when aggregating reports.
+- Midpoint & act-boundary checks: verify tonal inversion or escalation is present at act boundaries (e.g., the end of Act I or midpoint of Act II); warn or error depending on policy settings.
+
+How Copilot uses acts
+- The planner (`tools/plan_rhythm.py`) computes both a `story/tone_plan.jsonc` (chapter→macro phase map) and a `story/act_plan.jsonc` (summary per act with suggested act-level rhythms and flags such as midpoint, inversion, or boundary concerns).
+- Planner modes:
+  - `--annotate-suggestions`: write proposed annotations to `story/suggestions/suggested-annotations-<ts>.jsonc` (dry-run, reviewable).
+  - `--apply`: apply suggested annotations to chapter JSON files. When `story_config.acts.auto_apply_annotations` is true (the default in this repo), the planner may auto-apply suggestions; it will create an `apply-results-<ts>.jsonc` artifact under `story/suggestions/` and append `revision_history` entries to modified files.
+- When generating outlines or rewrites, Copilot should propose `act_id` for new chapters and propose `dominant_tone` and `macro_phase_segment` for acts that match the larger rhythm plan.
+- Use `tools/act_policy.py` to determine severity and recommended remediation steps for act-tone mismatches before applying or suggesting fixes.
+
+
 ## Checks, validation & CI
 
 Purpose
@@ -196,6 +280,10 @@ Core checks (machine-actionable)
 - Reading-level estimation
   - Provide a simple estimate (Flesch‑Kincaid grade) per chapter part/chapter and surface unusually high or low grades as info/warning.
   - Output: numeric grade and guidance.
+- Tone & rhythm checks
+  - Verify presence of tonal metadata (chapter.dominant_tone, chapter.macro_phase, chapter.chapter_level_rhythm) and surface warnings when missing.
+  - Validate distribution of macro phases across the book using `story_config.macro_rhythm_sequence` and `story_config.rhythm_cycles`; warn when chapters strongly deviate from planned placement.
+  - Check the midpoint chapter for tonal inversion characteristics and warn if missing.
 - Revision & timestamp hygiene
   - Require last_updated and revision_history for mutable objects; flag missing or malformed timestamps.
 
@@ -218,8 +306,9 @@ Automation & CI guidance
   1. schema validation
   2. id / cross-reference checks
   3. word-count & config checks
-  4. continuity checks (generate continuity_report.jsonc files)
-  5. aggregate to checks_report.jsonc
+  4. tone/rhythm distribution & presence checks (validate chapter.macro_phase, chapter.chapter_level_rhythm; verify midpoint inversion)
+  5. continuity checks (generate continuity_report.jsonc files)
+  6. aggregate to checks_report.jsonc
 - CI behavior: fail on any error-level issues; expose warnings in PR checks; attach continuity_report.jsonc and checks_report.jsonc to CI artifacts.
 - Suggested tooling: ajv/ajv-cli (JSON schema validation), a small Node/Python script to perform cross-references and continuity rules, or a Copilot prompt that implements the checks and outputs JSON.
 
@@ -279,6 +368,14 @@ Notes & policy
 
 End of new section.
 
+### New tools & templates (recent additions)
+- Canonical tone schema: `copilot-instructions/templates/tone_schema.jsonc` (canonical enums used by checks and planners).
+- Acts schema: `copilot-instructions/templates/acts_schema.jsonc` (act metadata template).
+- Planner script: `tools/plan_rhythm.py` — generates `story/tone_plan.jsonc` and `story/act_plan.jsonc`, writes suggestion artifacts to `story/suggestions/`, and supports `--annotate-suggestions` and `--apply` modes.
+- Act policy helper: `tools/act_policy.py` — maps policy config to severity and recommended actions used by `tools/run_checks.py`.
+- Auto-apply & artifacts: `story/suggestions/` contains `suggested-annotations-<ts>.jsonc` (dry-run) and `apply-results-<ts>.jsonc` (applied annotations summary). Planner can create or annotate chapters when `auto_apply_annotations` is enabled.
+- Tests: unit tests added under `tests/` that exercise planner annotation output, act policy severity mapping, and auto-apply behavior (`tests/test_act_policy.py`, `tests/test_plan_annotations.py`, `tests/test_auto_apply_annotations.py`).
+
 ## Appendix: templates
 See the templates/ folder for:
 - Schemas: character_schema.jsonc, location_schema.jsonc, chapter_schema.jsonc, interaction_schema.jsonc, continuity_report.jsonc
@@ -287,24 +384,27 @@ See the templates/ folder for:
 End of document.
 
 ## Copilot-managed checks & responsibilities
-- The assistant (Copilot) is designated to run checks locally on demand and is responsible for executing the Full-check pass described above.
-- Invocation: user prompt examples:
-  - "Run full check now and return checks_report and continuity reports."
-  - "Run checks for chap-03 only and summarize high-severity issues."
-- Execution rules:
-  - Always run locally / self-hosted / free-only tools (python tools/run_checks.py --full).
-  - Produce per-chapter continuity_report.jsonc and an aggregated checks-report JSONC under story/continuity/.
-  - Update affected chapter metadata with a `checks` object: { last_run, report, continuity_report, status } and append a revision_history entry noting the run and its outcome.
+- The assistant (Copilot) **simulates** checks and produces deterministic, machine-readable artifacts (simulated continuity reports, checks reports, and rewrite suggestions); Copilot does **not** execute repository `.py` scripts on the user's machine by itself.
+- Invocation: user prompt examples (simulation):
+  - "Simulate a full check and return checks_report and continuity reports."
+  - "Simulate checks for chap-03 only and summarize high-severity issues."
+- Execution rules (simulation-first):
+  - Copilot will **simulate** schema validation, ID/cross-reference checks, tone/rhythm checks, PII detection, and assessment heuristics and present a checks_report-like summary.
+  - If the user explicitly requests that the checks be executed locally, Copilot will provide the exact commands to run (e.g., `python tools/run_checks.py --full`) and clear instructions on how to run them and interpret results, but the user runs them locally — Copilot will not run them itself.
+  - When simulating a run, Copilot will state which artifacts it would write (e.g., `story/continuity/checks-report-<ts>.jsonc`) and provide a human-readable summary of simulated issues.
+  - Copilot will also indicate any file edits it would make (annotations, rewrites) and require explicit confirmation before writing files in-repo.
 - Remediation policy:
-  - For error-level issues, report results and recommended actions; do NOT auto-apply destructive fixes without explicit author approval.
-  - For low-risk fixes (typos, metadata formatting) the assistant MAY apply changes automatically if the user has given prior permission; record such automated actions in revision_history with tool metadata.
+  - For error-level issues, Copilot will report results and recommended actions; it will not auto-apply destructive fixes without explicit author approval.
+  - For low-risk fixes (typos, metadata formatting) the assistant may apply changes automatically only when the user has given prior permission; record such automated actions in `revision_history` with tool metadata.
+  - NOTE: tone/act annotation suggestions from `tools/plan_rhythm.py` may be auto-applied in-place when `story_config.acts.auto_apply_annotations` is true (the default in this repository); such actions are recorded with an `apply-results-<ts>.jsonc` artifact and revision_history entries. Substantive rewrites still require explicit author approval unless `auto_rewrite_enabled` is set and within configured limiters.
 - Reporting & follow-up:
-  - When checks complete, return a concise summary (errors/warnings/info counts), paths to report artifacts, and prioritized recommended fixes.
-  - For continuity contradictions, include suggested fixes and require explicit approval before applying substantive changes.
+  - After a simulated run, Copilot returns a concise summary (errors/warnings/info counts), sample artifacts and their paths, and prioritized recommended fixes.
+  - For continuity contradictions, Copilot will include suggested fixes and require explicit approval before applying substantive changes.
 - Privacy & sourcing:
   - Any checks that query external sources must follow the free-only MCP/search policy and include `sources` entries with attribution and retrieval_date.
-- Example user prompt:
-  - "Copilot, run the full check (python tools/run_checks.py --full), attach the checks_report and continuity reports, and list recommended fixes (do not apply any fixes)."
+- Example user prompts and behaviors:
+  - "Simulate the full check and show top issues" → Copilot: provides a simulated checks_report summary and exact local command to run the real script.
+  - "Apply planner suggestions and then simulate a check" → Copilot: applies metadata annotations only after confirmation, writes `apply-results` (if editing files), and simulates a follow-up checks_report.
 
 ## Automated iterative rewrite loop
 

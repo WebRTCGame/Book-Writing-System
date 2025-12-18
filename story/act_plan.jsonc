@@ -1,0 +1,99 @@
+{
+  "generated_at": "2025-12-18T13:36:24Z",
+  "act_plan": [
+    {
+      "act": 1,
+      "id": "act-01",
+      "sequence": 1,
+      "chapters": [
+        1
+      ],
+      "expected_macro_phases": [
+        "Hope"
+      ],
+      "suggested_act_level_rhythm": "Setup"
+    },
+    {
+      "act": 2,
+      "id": "act-02",
+      "sequence": 2,
+      "chapters": [
+        2,
+        3
+      ],
+      "expected_macro_phases": [
+        "Unease",
+        "Threat"
+      ],
+      "suggested_act_level_rhythm": "Escalation"
+    },
+    {
+      "act": 3,
+      "id": "act-03",
+      "sequence": 3,
+      "chapters": [
+        4,
+        5
+      ],
+      "expected_macro_phases": [
+        "Triumph",
+        "Resolve"
+      ],
+      "suggested_act_level_rhythm": "Escalation"
+    },
+    {
+      "act": 4,
+      "id": "act-04",
+      "sequence": 4,
+      "chapters": [
+        6
+      ],
+      "expected_macro_phases": [
+        "Catastrophe"
+      ],
+      "suggested_act_level_rhythm": "Lock-in"
+    },
+    {
+      "act": 5,
+      "id": "act-05",
+      "sequence": 5,
+      "chapters": [
+        7,
+        8,
+        9
+      ],
+      "expected_macro_phases": [
+        "Hope",
+        "Unease",
+        "Threat"
+      ],
+      "suggested_act_level_rhythm": "Pressure"
+    },
+    {
+      "act": 6,
+      "id": "act-06",
+      "sequence": 6,
+      "chapters": [
+        10,
+        11
+      ],
+      "expected_macro_phases": [
+        "Triumph",
+        "Resolve"
+      ],
+      "suggested_act_level_rhythm": "Collapse"
+    },
+    {
+      "act": 7,
+      "id": "act-07",
+      "sequence": 7,
+      "chapters": [
+        12
+      ],
+      "expected_macro_phases": [
+        "Catastrophe"
+      ],
+      "suggested_act_level_rhythm": "Resolution"
+    }
+  ]
+}
